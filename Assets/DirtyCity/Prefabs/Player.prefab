@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 786524527172955863}
   - component: {fileID: 5887459560917329011}
   - component: {fileID: 6132076942850371359}
+  - component: {fileID: 5960635330412881285}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -267,6 +268,7 @@ MonoBehaviour:
     type: 3}
   playerCamera: {fileID: 703299482900687890}
   hand: {fileID: 3236822890188910155}
+  torch: {fileID: 0}
   speed: 5
   mouseSens: 5
   cameraAcceleration: 9
@@ -278,6 +280,18 @@ MonoBehaviour:
   amplitude: 0.2
   amplitudeScale: 1.2
   cameraReturnTime: 15
+--- !u!114 &5960635330412881285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001738649631207173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738d4db2f8057d747bb8322880108a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7165272094252252406
 GameObject:
   m_ObjectHideFlags: 0
