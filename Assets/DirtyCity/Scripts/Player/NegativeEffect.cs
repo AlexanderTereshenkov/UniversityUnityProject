@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class NegativeEffect : MonoBehaviour
 {
+
     private float _radiationValue;
 
     public void ChangeValue(float value)
