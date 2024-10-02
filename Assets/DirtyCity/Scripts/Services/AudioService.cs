@@ -2,11 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class AudioManager : MonoBehaviour
+public class AudioService : MonoBehaviour
 {
     [SerializeField] private AudioContainer[] audioContainer;
-
-    public static AudioManager Instance { get; private set; }
 
     private Dictionary<AudioType, AudioClip> _clips = new Dictionary<AudioType, AudioClip>();
     private AudioSource _audioSource;
@@ -17,7 +15,6 @@ public class AudioManager : MonoBehaviour
         {
             _clips.Add(clip.containerType, clip.audioClip);
         }
-        Instance = this;
         _audioSource = GetComponent<AudioSource>();
     }
 
@@ -38,5 +35,6 @@ public struct AudioContainer
 
 public enum AudioType
 {
-    GeigerCounter
+    GeigerCounter,
+    TimerEnd
 }

@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PutGasmask",
+                    "type": "Button",
+                    "id": "b20ae445-7d8b-4350-99f9-9b4ff3bb0c5f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -183,6 +192,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ToggleTorch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2bbc3a72-d94a-4176-a85f-820fb7f567a0",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PutGasmask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

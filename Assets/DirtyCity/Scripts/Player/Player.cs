@@ -3,9 +3,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private NegativeEffect negativeEffect;
-    [SerializeField] private GeigerCounter geigerCounter;
+    [SerializeField] private GeigerCounterAudio geigerCounter;
+    [SerializeField] private Gasmask playerGasmask;
 
     public NegativeEffect GetNegativeEffect() => negativeEffect;
 
-    public GeigerCounter GetGeigerCounter() => geigerCounter;
+    public GeigerCounterAudio GetGeigerCounter() => geigerCounter;
+
+    public Gasmask GetPlayerGasmask() => playerGasmask;
 }

@@ -1,18 +1,19 @@
 using UnityEngine;
+using Reflex.Attributes;
 
-
-public class GeigerCounter : MonoBehaviour
+public class GeigerCounterAudio : MonoBehaviour
 {
 
     public bool IsPlaying { get; set; }
     public float CoolDownTime { get; set; }
 
-    private AudioManager _audioManager;
+    private AudioService _audioService;
     private float _timer;
 
-    private void Start()
+    [Inject]
+    private void Construct(AudioService audioService)
     {
-        _audioManager = AudioManager.Instance;
+        _audioService = audioService;
     }
 
     private void Update()
@@ -23,7 +24,7 @@ public class GeigerCounter : MonoBehaviour
         _timer += Time.deltaTime;
         if (_timer >= CoolDownTime)
         {
-            _audioManager.PlayOneShotSound(AudioType.GeigerCounter, 0.3f);
+            _audioService.PlayOneShotSound(AudioType.GeigerCounter, 0.3f);
             _timer = 0;
         }
     }

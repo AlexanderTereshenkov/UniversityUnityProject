@@ -4,7 +4,7 @@ public class RadiationZone : ImpactZone
 {
 
     private NegativeEffect _negativeEffect;
-    private GeigerCounter _geigerCounter;
+    private GeigerCounterAudio _geigerCounter;
 
     private void Update()
     {
