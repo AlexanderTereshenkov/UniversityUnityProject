@@ -37,6 +37,10 @@ public class Gasmask : MonoBehaviour
 
     private void Update()
     {
+        if (!IsMaskOn)
+        {
+            return;
+        }
         if(_workingTimeCounter > 0)
         {
             _workingTimeCounter -= Time.deltaTime;
@@ -59,8 +63,7 @@ public class Gasmask : MonoBehaviour
             }
             else
             {
-                _isSignalPlayed = false;
-                _workingTimeCounter = workingTime;
+
             }
         }
     }
