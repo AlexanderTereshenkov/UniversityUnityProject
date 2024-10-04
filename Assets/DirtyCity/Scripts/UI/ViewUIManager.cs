@@ -3,20 +3,27 @@ using UnityEngine;
 
 public class ViewUIManager : MonoBehaviour
 {
-    private Dictionary<IView, View> uiPages = new Dictionary<IView, View>();
-
-    public static ViewUIManager ViewManagerInstance { get; private set; }
-
-    private void Awake()
-    {
-        ViewManagerInstance = this;
-    }
+    private Dictionary<string, IView> _uiPages = new Dictionary<string, IView>();
 
     public void RegisterView<T>(T page) where T : IView
     {
-        if (!uiPages.ContainsKey(page))
+        var key = page.GetType().Name;
+        if (!_uiPages.ContainsKey(key))
         {
-           // uiPages.Add(page.GetType(), page);
+           _uiPages.Add(key, page);
         }
     }
+
+    public T GetView<T>() where T : IView
+    {
+        var key = typeof(T).Name;
+        if (!_uiPages.ContainsKey(key))
+        {
+            Debug.LogError("View not registered");
+            return default;
+        }
+        return (T) _uiPages[key];
+    }
+
+
 }
