@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class RadioactiveWindZone : ImpactZone
 {
+
+    [SerializeField] private float decreaseCoef;
+
     private NegativeEffect _negativeEffect;
     private Gasmask _playergasmask;
 
@@ -17,13 +20,13 @@ public class RadioactiveWindZone : ImpactZone
         if (_currentplayer != null && _timer >= effectCoolDown)
         {
             float damage = Random.Range(minImpactValue, maxImpactValue);
-            if (_playergasmask.IsMaskOn)
+            if (!_playergasmask.IsMaskWorking)
             {
                 _negativeEffect.ChangeValue(damage * effectCoef);
             }
             else
             {
-                _negativeEffect.ChangeValue(damage / 2f);
+                _negativeEffect.ChangeValue(damage / decreaseCoef);
             }
             _timer = 0;
         }

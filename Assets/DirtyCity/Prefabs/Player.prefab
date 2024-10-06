@@ -279,8 +279,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputActionAsset: {fileID: -944628639613478452, guid: 83995835181ca6747ade9e67ed0b921d,
     type: 3}
-  workingTime: 20
+  workingTime: 90
   signalTime: 10
+  minVignette: 0.1
+  maxVignette: 0.45
 --- !u!1 &6253497058008717989
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +339,7 @@ GameObject:
   - component: {fileID: 5887459560917329011}
   - component: {fileID: 6132076942850371359}
   - component: {fileID: 6098734483362762495}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,6 +364,7 @@ Transform:
   - {fileID: 3110503784462211845}
   - {fileID: 7067336518858927337}
   - {fileID: 5792520047478004270}
+  - {fileID: 8952579183695425620}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &5887459560917329011
@@ -465,6 +468,57 @@ Transform:
   - {fileID: 6058130380575290193}
   m_Father: {fileID: 786524527172955863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7347959681064574390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8952579183695425620}
+  - component: {fileID: 2665104835655931656}
+  m_Layer: 0
+  m_Name: RayInteractor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8952579183695425620
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7347959681064574390}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 786524527172955863}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2665104835655931656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7347959681064574390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e80d38afffe0ca42a1535e05ba72046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionAsset: {fileID: -944628639613478452, guid: 83995835181ca6747ade9e67ed0b921d,
+    type: 3}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4
+  rayOrigin: {fileID: 6268430085511391390}
+  maxDistance: 7
 --- !u!1 &8086512981057328631
 GameObject:
   m_ObjectHideFlags: 0

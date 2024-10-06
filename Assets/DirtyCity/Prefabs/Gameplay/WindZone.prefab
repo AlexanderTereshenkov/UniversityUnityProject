@@ -187,3 +187,4 @@ MonoBehaviour:
   effectCoef: 1
   minImpactValue: 2
   maxImpactValue: 5
+  decreaseCoef: 10

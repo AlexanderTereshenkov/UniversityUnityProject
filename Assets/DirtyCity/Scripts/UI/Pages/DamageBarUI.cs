@@ -19,10 +19,12 @@ public class DamageBarUI : View
     public override void Show()
     {
         image.gameObject.SetActive(true);
+
     }
 
     public void FillBar(float maxValue, float value)
     {
+
         float percent = value / maxValue;
         image.fillAmount = percent;
     }

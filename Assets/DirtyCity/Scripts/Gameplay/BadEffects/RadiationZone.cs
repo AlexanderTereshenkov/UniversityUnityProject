@@ -16,7 +16,9 @@ public class RadiationZone : ImpactZone
         _timer += Time.deltaTime;
 
         float geigerDistance = Vector3.Distance(transform.position, _currentplayer.transform.position);
-        _geigerCounter.CoolDownTime = geigerDistance / (_radius * 2f);
+        _geigerCounter.CoolDownTime = geigerDistance / (_radius * 4f);
+
+        //high radiation zone
 
         if (_currentplayer != null && _timer >= effectCoolDown)
         {
@@ -26,6 +28,7 @@ public class RadiationZone : ImpactZone
             _negativeEffect.ChangeValue(Random.Range(minImpactValue, maxImpactValue) * value);
             _timer = 0;
         }
+
     }
 
     public override void OnTriggerEnter(Collider other)

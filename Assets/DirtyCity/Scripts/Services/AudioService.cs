@@ -36,5 +36,7 @@ public struct AudioContainer
 public enum AudioType
 {
     GeigerCounter,
-    TimerEnd
+    TimerEnd,
+    Gasmask,
+    Step
 }
