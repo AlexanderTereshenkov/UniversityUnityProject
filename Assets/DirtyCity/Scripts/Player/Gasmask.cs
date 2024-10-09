@@ -6,14 +6,15 @@ using UnityEngine.Rendering.Universal;
 public class Gasmask : MonoBehaviour
 {
 
-    [SerializeField] private InputActionAsset inputActionAsset;
     [SerializeField] private float workingTime;
     [SerializeField] private float signalTime;
     [Range(0, 1)]
     [SerializeField] private float minVignette;
     [Range(0, 1)]
     [SerializeField] private float maxVignette;
+    [SerializeField] private Inventory inventory;
 
+    private InputActionAsset _inputActionAsset;
     private InputAction _putAction;
     private InputAction _changeFilterAction;
 
@@ -24,20 +25,20 @@ public class Gasmask : MonoBehaviour
 
     public bool IsMaskOn { get; private set; }
     public bool IsMaskWorking { get; private set; }
-    public int Filters { get; set; }
+
 
     [Inject]
-    private void Construct(AudioService audioService, WorldSettings worldSettings)
+    private void Construct(AudioService audioService, WorldSettings worldSettings, InputActionAsset inputAction)
     {
         _audioService = audioService;
         _worldSettings = worldSettings;
+        _inputActionAsset = inputAction;
     }
 
     private void Start()
     {
         IsMaskOn = false;
         IsMaskWorking = true;
-        Filters = 3;
         _workingTimeCounter = workingTime;
 
         if(_worldSettings.GetGlobalVolume().profile.TryGet(out Vignette vignette))
@@ -45,8 +46,8 @@ public class Gasmask : MonoBehaviour
             vignette.intensity.Override(minVignette);
         }
 
-        _putAction = inputActionAsset.FindAction("PutGasmask");
-        _changeFilterAction = inputActionAsset.FindAction("ChangeFilter");
+        _putAction = _inputActionAsset.FindAction("PutGasmask");
+        _changeFilterAction = _inputActionAsset.FindAction("ChangeFilter");
 
         _putAction.performed += PutGasmask;
         _changeFilterAction.performed += ChangeFilter;
@@ -89,10 +90,10 @@ public class Gasmask : MonoBehaviour
     {
         if (IsMaskOn && !IsMaskWorking)
         {
-            if(Filters - 1 >= 0)
+            if(inventory.Filters - 1 >= 0)
             {
                 IsMaskWorking = true;
-                Filters--;
+                inventory.Filters--;
                 _workingTimeCounter = workingTime;
                 _isSignalPlayed = false;
             } 

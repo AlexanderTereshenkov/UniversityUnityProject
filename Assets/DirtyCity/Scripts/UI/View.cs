@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class View : MonoBehaviour, IView
 {
+    [SerializeField] private ViewType viewType;
     protected ViewUIManager _viewUIManager;
 
     [Inject]
@@ -13,5 +14,5 @@ public abstract class View : MonoBehaviour, IView
 
     public abstract void Hide();
     public abstract void Show();
-
+    public ViewType GetViewType() => viewType;
 }

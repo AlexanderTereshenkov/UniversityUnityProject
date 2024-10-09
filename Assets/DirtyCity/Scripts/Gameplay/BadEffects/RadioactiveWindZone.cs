@@ -20,13 +20,13 @@ public class RadioactiveWindZone : ImpactZone
         if (_currentplayer != null && _timer >= effectCoolDown)
         {
             float damage = Random.Range(minImpactValue, maxImpactValue);
-            if (!_playergasmask.IsMaskWorking)
+            if (_playergasmask.IsMaskWorking && _playergasmask.IsMaskOn)
             {
-                _negativeEffect.ChangeValue(damage * effectCoef);
+                _negativeEffect.ChangeValue(damage / decreaseCoef);
             }
             else
             {
-                _negativeEffect.ChangeValue(damage / decreaseCoef);
+                _negativeEffect.ChangeValue(damage * effectCoef);
             }
             _timer = 0;
         }

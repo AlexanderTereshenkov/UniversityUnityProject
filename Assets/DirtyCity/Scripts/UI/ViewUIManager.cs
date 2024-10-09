@@ -25,5 +25,31 @@ public class ViewUIManager : MonoBehaviour
         return (T) _uiPages[key];
     }
 
+    public void HideAllViews()
+    {
+        foreach (var view in _uiPages.Values)
+        {
+            view.Hide();
+        }
+    }
 
+    public void ShowView(ViewType type)
+    {
+        foreach (var view in _uiPages.Values)
+        {
+            if(view.GetViewType() == type)
+            {
+                view.Show();
+            }
+        }
+    }
 }
+
+public enum ViewType
+{
+    Gameplay,
+    PauseMenu,
+    Inventory,
+    EndScreen
+}
+

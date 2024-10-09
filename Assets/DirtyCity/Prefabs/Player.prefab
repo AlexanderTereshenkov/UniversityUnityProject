@@ -277,12 +277,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a227efbf5e3594f8d246f8ba5f9874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionAsset: {fileID: -944628639613478452, guid: 83995835181ca6747ade9e67ed0b921d,
-    type: 3}
   workingTime: 90
   signalTime: 10
   minVignette: 0.1
   maxVignette: 0.45
+  inventory: {fileID: 2437344769191069620}
 --- !u!1 &6253497058008717989
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,6 +338,8 @@ GameObject:
   - component: {fileID: 5887459560917329011}
   - component: {fileID: 6132076942850371359}
   - component: {fileID: 6098734483362762495}
+  - component: {fileID: 2437344769191069620}
+  - component: {fileID: 7705026376431351126}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -405,8 +406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce2188afc52936146abca03dc5100dad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionAsset: {fileID: -944628639613478452, guid: 83995835181ca6747ade9e67ed0b921d,
-    type: 3}
   playerCamera: {fileID: 703299482900687890}
   hand: {fileID: 3236822890188910155}
   torch: {fileID: 5545094303209909694}
@@ -436,6 +435,30 @@ MonoBehaviour:
   negativeEffect: {fileID: 3683288529674469121}
   geigerCounter: {fileID: 7041007521472796921}
   playerGasmask: {fileID: 7940189010874145129}
+--- !u!114 &2437344769191069620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001738649631207173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072f58e1f84d9c54fbc90b1346b2cda1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7705026376431351126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001738649631207173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed59a7ecb3aa8f449b92cbe6ecedcd06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7165272094252252406
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,13 +535,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e80d38afffe0ca42a1535e05ba72046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionAsset: {fileID: -944628639613478452, guid: 83995835181ca6747ade9e67ed0b921d,
-    type: 3}
   layerMask:
     serializedVersion: 2
     m_Bits: 4
   rayOrigin: {fileID: 6268430085511391390}
   maxDistance: 7
+  inventory: {fileID: 2437344769191069620}
 --- !u!1 &8086512981057328631
 GameObject:
   m_ObjectHideFlags: 0

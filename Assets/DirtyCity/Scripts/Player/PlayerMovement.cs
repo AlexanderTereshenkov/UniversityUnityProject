@@ -1,4 +1,5 @@
 using Cinemachine;
+using Reflex.Attributes;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,7 +7,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private InputActionAsset inputActionAsset;
+
     [SerializeField] private CinemachineVirtualCamera playerCamera;
     [SerializeField] private Transform hand;
     [SerializeField] private GameObject torch;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     private CharacterController _characterController;
 
+    private InputActionAsset _inputActionAsset;
     private InputAction _moveAction;
     private InputAction _runAction;
     private InputAction _lookAction;
@@ -39,16 +41,23 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _cameraStartLocalPosition;
     private float _headBobbingTimer;
 
+    [Inject]
+    private void Construct(InputActionAsset inputAction)
+    {
+        _inputActionAsset = inputAction;
+    }
+
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
 
-        inputActionAsset.Enable();
 
-        _moveAction = inputActionAsset.FindAction("Movement");
-        _runAction = inputActionAsset.FindAction("Run");
-        _lookAction = inputActionAsset.FindAction("Look");
-        _toggleTorchAction = inputActionAsset.FindAction("ToggleTorch");
+        _inputActionAsset.Enable();
+
+        _moveAction = _inputActionAsset.FindAction("Movement");
+        _runAction = _inputActionAsset.FindAction("Run");
+        _lookAction = _inputActionAsset.FindAction("Look");
+        _toggleTorchAction = _inputActionAsset.FindAction("ToggleTorch");
 
         _toggleTorchAction.performed += ToggleTorch;
 
