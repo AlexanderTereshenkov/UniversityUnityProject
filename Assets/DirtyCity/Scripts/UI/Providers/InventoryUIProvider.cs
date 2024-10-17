@@ -10,7 +10,7 @@ public class InventoryUIProvider
         _inventory = inventory;
 
         _inventory.OnFilterChanged += SetFiltersAmount;
-        _inventory.OnObjectPicked += SetInteractibleObject;
+        _inventory.OnObjectChanged += SetInteractibleObject;
     }
 
     private void SetFiltersAmount(int amount)
@@ -18,15 +18,15 @@ public class InventoryUIProvider
         _mapInventoryPage.SetFiltersAmount(amount);
     }
 
-    private void SetInteractibleObject(IInteractible interactible)
+    private void SetInteractibleObject(IPickable pickable)
     {
-        _mapInventoryPage.SetInteractibleObject(interactible);
+        _mapInventoryPage.SetInteractibleObject(pickable);
     }
 
     ~InventoryUIProvider()
     {
         _inventory.OnFilterChanged -= SetFiltersAmount;
-        _inventory.OnObjectPicked -= SetInteractibleObject;
+        _inventory.OnObjectChanged -= SetInteractibleObject;
     }
 
 

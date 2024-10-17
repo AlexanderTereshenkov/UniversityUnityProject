@@ -5,13 +5,14 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
 
-    private IInteractible _pickableObject;
-    private int _filters;
+    [SerializeField] private Transform handPosition;
 
+    private IPickable _pickableObject;
+    private int _filters;
     private InventoryUIProvider _inventoryUIProvider;
     private ViewUIManager _viewUIManager;
 
-    public event Action<IInteractible> OnObjectPicked;
+    public event Action<IPickable> OnObjectChanged;
     public event Action<int> OnFilterChanged;
 
     [Inject]
@@ -23,19 +24,23 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         _inventoryUIProvider = new InventoryUIProvider(_viewUIManager.GetView<MapInventoryPage>(), this);
-        OnObjectPicked?.Invoke(null);
+        OnObjectChanged?.Invoke(null);
         OnFilterChanged?.Invoke(0);
     }
 
-    public IInteractible PickableObject
+    public IPickable PickableObject
     {
         set
         {
             if(_pickableObject == null)
             {
                 _pickableObject = value;
-                OnObjectPicked?.Invoke(_pickableObject);
+                OnObjectChanged?.Invoke(_pickableObject);
             }
+        }
+        get
+        {
+            return _pickableObject;
         }
     }
 
@@ -52,12 +57,22 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public IInteractible GetPickableObject()
+    public Transform HandPosition
     {
-        var returnObject = _pickableObject;
-        _pickableObject = null;
-        OnObjectPicked?.Invoke(_pickableObject);
-        return returnObject;
+        get
+        {
+            return handPosition;
+        }
     }
+
+    public void DeleteFromInventory()
+    {
+        if (_pickableObject == null)
+            return;
+        _pickableObject.Drop(this);
+        _pickableObject = null;
+        OnObjectChanged?.Invoke(_pickableObject);
+    }
+
 
 }

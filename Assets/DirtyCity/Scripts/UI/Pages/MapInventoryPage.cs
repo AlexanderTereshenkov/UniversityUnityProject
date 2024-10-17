@@ -1,3 +1,4 @@
+using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,10 +10,13 @@ public class MapInventoryPage : View
     [SerializeField] private TextMeshProUGUI filtersText;
     [SerializeField] private Image objectIcon;
     [SerializeField] private TextMeshProUGUI objectText;
+    [SerializeField] private Button deleteButton;
 
     [Header("Default options")]
     [SerializeField] private Sprite defaultSprite;
     [SerializeField] private string defaultText;
+
+    private Player _player;
 
     public GameObject InventoryPage
     {
@@ -22,9 +26,20 @@ public class MapInventoryPage : View
         }
     }
 
+    [Inject]
+    private void Construct(Player player)
+    {
+        _player = player;
+    }
+
     private void Awake()
     {
         _viewUIManager.RegisterView(this);
+        deleteButton.onClick.AddListener(() =>
+        {
+            _player.GetInventory().DeleteFromInventory();
+        }
+        );
     }
 
     public override void Hide()
@@ -44,16 +59,16 @@ public class MapInventoryPage : View
         filtersText.text = amount.ToString();
     }
 
-    public void SetInteractibleObject(IInteractible interactible)
+    public void SetInteractibleObject(IPickable pickable)
     {
-        if(interactible == null)
+        if(pickable == null)
         {
             objectText.text = defaultText;
             objectIcon.sprite =  defaultSprite;
             return;
         }
-        objectText.text = interactible.GetName() == null ? defaultText : interactible.GetName();
-        objectIcon.sprite = interactible.GetIcon() == null ? defaultSprite : interactible.GetIcon();
+        objectText.text = pickable.GetName() == null ? defaultText : pickable.GetName();
+        objectIcon.sprite = pickable.GetIcon() == null ? defaultSprite : pickable.GetIcon();
     }
 
 }

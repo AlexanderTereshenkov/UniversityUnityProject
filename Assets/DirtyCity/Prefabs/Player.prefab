@@ -435,6 +435,7 @@ MonoBehaviour:
   negativeEffect: {fileID: 3683288529674469121}
   geigerCounter: {fileID: 7041007521472796921}
   playerGasmask: {fileID: 7940189010874145129}
+  inventory: {fileID: 0}
 --- !u!114 &2437344769191069620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,6 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 072f58e1f84d9c54fbc90b1346b2cda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handPosition: {fileID: 3236822890188910155}
 --- !u!114 &7705026376431351126
 MonoBehaviour:
   m_ObjectHideFlags: 0
