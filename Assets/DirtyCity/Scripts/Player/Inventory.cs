@@ -69,10 +69,16 @@ public class Inventory : MonoBehaviour
     {
         if (_pickableObject == null)
             return;
-        _pickableObject.Drop(this);
         _pickableObject = null;
         OnObjectChanged?.Invoke(_pickableObject);
     }
 
+    public void DropFromInventory()
+    {
+        if (_pickableObject == null)
+            return;
+        _pickableObject.Drop();
+        DeleteFromInventory();
+    }
 
 }

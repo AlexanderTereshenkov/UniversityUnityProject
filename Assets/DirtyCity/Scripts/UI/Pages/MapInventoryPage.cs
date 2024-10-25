@@ -37,7 +37,7 @@ public class MapInventoryPage : View
         _viewUIManager.RegisterView(this);
         deleteButton.onClick.AddListener(() =>
         {
-            _player.GetInventory().DeleteFromInventory();
+            _player.GetInventory().DropFromInventory();
         }
         );
     }

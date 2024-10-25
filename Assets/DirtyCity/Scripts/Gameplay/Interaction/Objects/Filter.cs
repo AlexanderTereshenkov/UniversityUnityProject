@@ -3,9 +3,11 @@ using UnityEngine;
 public class Filter : MonoBehaviour, IInteractible
 {
 
+    [SerializeField] private string rayDescription;
+
     public string GetStringDescription()
     {
-        return "Нажмите E, чтобы пополнить фильтры";
+        return rayDescription;
     }
 
     public void Interact(Inventory inventory)
