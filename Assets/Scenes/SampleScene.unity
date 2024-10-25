@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &19525753
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -278,7 +278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &140825885
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -453,7 +453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &222664391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1134,7 +1134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &411407921
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1273,7 +1273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &506447161
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1650,7 +1650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &717089125
 Transform:
   m_ObjectHideFlags: 0
@@ -2022,7 +2022,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &873449872
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2192,7 +2192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &912751626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2299,7 +2299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &942176905
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2496,7 +2496,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1052092803
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2757,7 +2757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1175686926
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3001,7 +3001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1234321090
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3108,7 +3108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1306569848
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3368,7 +3368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1392232336
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3933,7 +3933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1835038965
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4334,7 +4334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1993140166
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4473,7 +4473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2012224179
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4578,17 +4578,17 @@ PrefabInstance:
     - target: {fileID: 7538024778475469710, guid: 2d3f7731c7e4d244e833aa20518f198e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.6
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 7538024778475469710, guid: 2d3f7731c7e4d244e833aa20518f198e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00000023841858
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7538024778475469710, guid: 2d3f7731c7e4d244e833aa20518f198e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -110.72496
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7538024778475469710, guid: 2d3f7731c7e4d244e833aa20518f198e,
         type: 3}
@@ -4636,18 +4636,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 968083534429404098}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2056753100 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2437344769191069620, guid: 8bee224b04febc542b9f1fae64169873,
-    type: 3}
-  m_PrefabInstance: {fileID: 968083534429404098}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 072f58e1f84d9c54fbc90b1346b2cda1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2056753102 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6098734483362762495, guid: 8bee224b04febc542b9f1fae64169873,
@@ -4711,7 +4699,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2140398648
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4878,11 +4866,6 @@ PrefabInstance:
       propertyPath: <GeigerCounterAudio>k__BackingField
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6098734483362762495, guid: 8bee224b04febc542b9f1fae64169873,
-        type: 3}
-      propertyPath: inventory
-      value: 
-      objectReference: {fileID: 2056753100}
     - target: {fileID: 7001738649631207173, guid: 8bee224b04febc542b9f1fae64169873,
         type: 3}
       propertyPath: m_Name
