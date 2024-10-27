@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player and camera settings")]
     [SerializeField] private float speed;
     [SerializeField] private float mouseSens;
+    [SerializeField] private float gravityScale;
     [SerializeField] private float cameraAcceleration;
     [SerializeField] private float handAcceleration;
     [SerializeField] private float lookAngle;
@@ -40,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
     private float _horizontalCameraRotation;
     private Vector3 _cameraStartLocalPosition;
     private float _headBobbingTimer;
+
+    private Vector3 _velocity;
 
     [Inject]
     private void Construct(InputActionAsset inputAction)
@@ -95,6 +98,16 @@ public class PlayerMovement : MonoBehaviour
         {
             _headBobbingTimer = 0;
             ReturnCameraPosition();
+        }
+
+        if (!_characterController.isGrounded)
+        {
+            _velocity.y += gravityScale * Time.deltaTime * Time.deltaTime;
+            _characterController.Move(_velocity);
+        }
+        else
+        {
+            _velocity.y = 0;
         }
 
         _characterController.Move(movement);

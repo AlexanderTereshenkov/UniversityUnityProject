@@ -90,7 +90,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6058130380575290193
 Transform:
   m_ObjectHideFlags: 0
@@ -443,13 +443,14 @@ MonoBehaviour:
   torch: {fileID: 5545094303209909694}
   speed: 5
   mouseSens: 5
+  gravityScale: -10
   cameraAcceleration: 9
   handAcceleration: 5
   lookAngle: 45
   runningScale: 2
   frequency: 5
   frequencyScale: 1.5
-  amplitude: 0.2
+  amplitude: 0.15
   amplitudeScale: 1.2
   cameraReturnTime: 15
 --- !u!114 &6098734483362762495
