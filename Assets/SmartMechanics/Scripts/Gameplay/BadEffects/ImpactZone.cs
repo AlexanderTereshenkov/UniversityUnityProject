@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(SphereCollider))]
 public abstract class ImpactZone : MonoBehaviour
 {
 
@@ -15,7 +16,7 @@ public abstract class ImpactZone : MonoBehaviour
 
     protected Player _currentplayer;
 
-    private void Awake()
+    public virtual void Awake()
     {
         _sphereCollider = GetComponent<SphereCollider>();
         _radius = _sphereCollider.radius;

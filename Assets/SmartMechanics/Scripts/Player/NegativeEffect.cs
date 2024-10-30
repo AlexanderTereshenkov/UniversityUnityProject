@@ -27,6 +27,7 @@ public class NegativeEffect : MonoBehaviour
     public void ChangeValue(float value)
     {
         _radiationValue += value;
+        Debug.Log(_radiationValue);
         OnValueChanged?.Invoke(_radiationValue);
     }
 }

@@ -7,8 +7,11 @@ public class RadioactiveVacumCliner : BaseAction
 
     [SerializeField] private Transform[] pathPoints;
     [SerializeField] private Transform startPoint;
+    [SerializeField] private Transform objectSpawnPoint;
+    [SerializeField] private RadioactiveObject radioactiveObject;
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private int pieceAmount;
 
     private Transform _currentPoint;
     private int _currentPointIndex;
@@ -50,4 +53,29 @@ public class RadioactiveVacumCliner : BaseAction
         var newDirection = Vector3.RotateTowards(transform.forward, lookDirection, rotationSpeed * Time.deltaTime, .0f);
         transform.rotation = Quaternion.LookRotation(newDirection);
     }
+
+    // TODO maybe be later
+
+    /*
+    private IEnumerator ThrowPiecesCoroutine()
+    {
+        for(int i = 0; i < pieceAmount; i++)
+        {
+            var spawnedObject = Instantiate(radioactiveObject);
+            spawnedObject.transform.position = objectSpawnPoint.position;
+
+            float x = Random.Range(0, 1);
+            float y = Random.Range(0, 1);
+            float z = Random.Range(0, 1);
+
+            Vector3 forceDirection = new Vector3(x, y, z);
+
+            spawnedObject.ApplyForce(forceDirection * 30);
+
+            yield return new WaitForSeconds(2);
+        }
+        
+    }
+    */
+
 }

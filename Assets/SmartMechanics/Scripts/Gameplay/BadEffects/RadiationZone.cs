@@ -6,7 +6,7 @@ public class RadiationZone : ImpactZone
     private NegativeEffect _negativeEffect;
     private GeigerCounterAudio _geigerCounter;
 
-    private void Update()
+    public virtual void Update()
     {
         if (!_isPlayerInside)
         {
@@ -24,6 +24,7 @@ public class RadiationZone : ImpactZone
         {
             float distance = Vector3.Distance(transform.position, _currentplayer.transform.position);
             float value = effectCoef - (distance / _radius);
+            value = Mathf.Clamp(value, 0, effectCoef);
 
             _negativeEffect.ChangeValue(Random.Range(minImpactValue, maxImpactValue) * value);
             _timer = 0;
@@ -36,6 +37,8 @@ public class RadiationZone : ImpactZone
         if(other.TryGetComponent(out Player player))
         {
             base.OnTriggerEnter(other);
+
+            Debug.Log("Wind zone");
 
             _negativeEffect = _currentplayer.GetNegativeEffect();
             _geigerCounter = _currentplayer.GetGeigerCounter();
