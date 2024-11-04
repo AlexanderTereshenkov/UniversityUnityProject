@@ -12,6 +12,8 @@ public class RadioactiveVacumCliner : BaseAction
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private int pieceAmount;
+    [Header("Radioation zone")]
+    [SerializeField] private GameObject radiationRadius;
 
     private Transform _currentPoint;
     private int _currentPointIndex;
@@ -20,10 +22,9 @@ public class RadioactiveVacumCliner : BaseAction
     public override void BeginAction()
     {
         Debug.Log("Begin action");
-        _currentPointIndex = 1;
         _currentPoint = pathPoints[_currentPointIndex];
-        transform.position = pathPoints[0].position;
         _isMoving = true;
+        radiationRadius.SetActive(true);
     }
 
     void Update()
@@ -46,6 +47,7 @@ public class RadioactiveVacumCliner : BaseAction
             {
                 transform.position = startPoint.position;
                 _isMoving = false;
+                radiationRadius.SetActive(false);
                 return;
             }
         }

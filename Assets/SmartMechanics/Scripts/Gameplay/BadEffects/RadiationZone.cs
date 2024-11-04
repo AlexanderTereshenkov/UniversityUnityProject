@@ -18,8 +18,6 @@ public class RadiationZone : ImpactZone
         float geigerDistance = Vector3.Distance(transform.position, _currentplayer.transform.position);
         _geigerCounter.CoolDownTime = geigerDistance / (_radius * 4f);
 
-        //high radiation zone
-
         if (_currentplayer != null && _timer >= effectCoolDown)
         {
             float distance = Vector3.Distance(transform.position, _currentplayer.transform.position);
@@ -37,8 +35,6 @@ public class RadiationZone : ImpactZone
         if(other.TryGetComponent(out Player player))
         {
             base.OnTriggerEnter(other);
-
-            Debug.Log("Wind zone");
 
             _negativeEffect = _currentplayer.GetNegativeEffect();
             _geigerCounter = _currentplayer.GetGeigerCounter();

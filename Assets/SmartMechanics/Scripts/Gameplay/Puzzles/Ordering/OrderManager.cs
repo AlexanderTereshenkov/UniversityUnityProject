@@ -5,48 +5,53 @@ public class OrderManager : MonoBehaviour
     [SerializeField] private int[] rightOrderIndex;
     [SerializeField] private ObjectPlace[] places;
 
-    private int[] currentOrder;
-    private int objectCount;
+    private int[] _currentOrder;
+    private int _objectCount;
+    private PuzzleAction _openDoorAction;
 
     private void Start()
     {
-        currentOrder = new int[rightOrderIndex.Length];
+        _currentOrder = new int[rightOrderIndex.Length];
         for(int i = 0; i < rightOrderIndex.Length; i++)
         {
             places[i].PlaceIndex = i;
             places[i].OnObjectPlaced += AddObject;
             places[i].OnObjectRemoved += RemoveObject;
-            currentOrder[i] = -1;
+            _currentOrder[i] = -1;
         }
+        _openDoorAction = GetComponent<PuzzleAction>();
     }
 
     private void AddObject(int index, OrderObject orderObject)
     {
-        currentOrder[index] = orderObject.GetPosIndex();
-        objectCount++;
-        if(objectCount >= rightOrderIndex.Length)
+        _currentOrder[index] = orderObject.GetPosIndex();
+        _objectCount++;
+        if(_objectCount >= rightOrderIndex.Length)
         {
-            Debug.Log("CHECK NOOOOOW");
             CheckOrder();
         }
     }
 
     private void RemoveObject(int index)
     {
-        currentOrder[index] = -1;
-        objectCount--;
+        if(_objectCount >= rightOrderIndex.Length)
+        {
+            _openDoorAction.CancleAction();
+        }
+        _currentOrder[index] = -1;
+        _objectCount--;
     }
 
     private void CheckOrder()
     {
         for(int i = 0; i < rightOrderIndex.Length; i++)
         {
-            if (rightOrderIndex[i] != currentOrder[i])
+            if (rightOrderIndex[i] != _currentOrder[i])
             {
-                Debug.Log("WRONG ORDER");
-                break;
+                return;
             }
         }
+        _openDoorAction.PerformAction();
     }
 
 }

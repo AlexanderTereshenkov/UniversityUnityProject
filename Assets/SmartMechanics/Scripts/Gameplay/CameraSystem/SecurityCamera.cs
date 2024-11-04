@@ -6,14 +6,19 @@ public class SecurityCamera : MonoBehaviour
     [SerializeField] private float maxDistance;
     [SerializeField] private BaseAction action;
     [SerializeField] private float reactionTime;
+    [Header("Light settings")]
+    [SerializeField] private Light pointLight;
+    [SerializeField] private Color detectionColor;
 
     private Player _player;
     private float _timer;
+    private Color _defaultColor;
 
     private void Start()
     {
         _player = FindAnyObjectByType<Player>();
         _timer = reactionTime;
+        _defaultColor = pointLight.color;
     }
 
     private void Update()
@@ -26,7 +31,10 @@ public class SecurityCamera : MonoBehaviour
                 BeginAction();
                 _timer = 0;
             }
+            pointLight.color = detectionColor;
+            return;
         }
+        pointLight.color = _defaultColor;
     }
 
     private bool CheckPlayerIsInView()

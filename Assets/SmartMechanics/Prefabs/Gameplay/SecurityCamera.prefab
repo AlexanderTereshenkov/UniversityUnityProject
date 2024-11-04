@@ -50,6 +50,8 @@ MonoBehaviour:
   maxDistance: 15
   action: {fileID: 0}
   reactionTime: 50
+  pointLight: {fileID: 6802141497684970791}
+  detectionColor: {r: 1, g: 0.42830187, b: 0.42830187, a: 1}
 --- !u!1 &4302207015420097656
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +95,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 1, g: 0.25471687, b: 0.25471687, a: 1}
+  m_Color: {r: 0.33725488, g: 1, b: 0.43379676, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
