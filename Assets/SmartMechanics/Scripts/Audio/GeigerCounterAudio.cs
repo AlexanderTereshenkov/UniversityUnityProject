@@ -24,7 +24,7 @@ public class GeigerCounterAudio : MonoBehaviour
         _timer += Time.deltaTime;
         if (_timer >= CoolDownTime)
         {
-            _audioService.PlayOneShotSound(AudioType.GeigerCounter, 0.3f);
+            _audioService.PlayOneShotSound(AudioType.GeigerCounter, 0.1f);
             _timer = 0;
         }
     }

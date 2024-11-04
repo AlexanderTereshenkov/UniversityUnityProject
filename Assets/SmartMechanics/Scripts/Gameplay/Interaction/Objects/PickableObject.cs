@@ -14,12 +14,14 @@ public abstract class PickableObject : MonoBehaviour, IInteractible, IPickable
 
     private Rigidbody _rigidbody;
 
+    public bool IsPickable { get; set; }
+
     public event Action OnObjectPicked;
 
     private void Start()
     {
-
         _rigidbody = GetComponent<Rigidbody>();
+        IsPickable = true;
     }
 
     public void Drop()
@@ -51,6 +53,10 @@ public abstract class PickableObject : MonoBehaviour, IInteractible, IPickable
 
     public void Interact(Inventory inventory)
     {
+        if (!IsPickable)
+        {
+            return;
+        }
         Pick(inventory);
     }
 
