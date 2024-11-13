@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gameplayHandler : MonoBehaviour
+public class TransformBlockManager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

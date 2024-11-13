@@ -35,13 +35,26 @@ public class SecurityCamera : MonoBehaviour
             return;
         }
         pointLight.color = _defaultColor;
+        Debug.DrawRay(transform.position, ((_player.transform.position - transform.position).normalized) * maxDistance, Color.red);
     }
 
     private bool CheckPlayerIsInView()
     {
-        var playerVector = _player.transform.position - transform.position;
+        var playerVector = (_player.transform.position - transform.position);
         bool checkAngle = Vector3.Angle(transform.forward, playerVector) <= cameraFOV / 2f;
         bool checkDistance = Vector3.Distance(_player.transform.position, transform.position) <= maxDistance;
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, playerVector, out hit))
+        {
+            Debug.Log(hit.collider.name);
+            /*
+            if(!hit.collider.TryGetComponent(out Player _))
+            {
+                return false;
+            }
+            */
+        }
+        Debug.Log("PLayer detected");
         return checkAngle && checkDistance;
     }
 
