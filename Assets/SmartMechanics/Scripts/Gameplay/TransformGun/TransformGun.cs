@@ -1,18 +1,20 @@
 using Reflex.Attributes;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class TransformGun : MonoBehaviour
 {
-
+    [Header("Gun settings")]
     [SerializeField] private Transform rayOrigin;
     [SerializeField] private float gunDistance;
     [SerializeField] private LayerMask gunLayer;
+    [Header("Follow point")]
+    [SerializeField] private Transform followPoint;
 
     private InputActionAsset _inputActionAsset;
     private InputAction _shootAction;
+    private bool _isGrabbed;
+    private TransformBlock _currentBlock;
 
     [Inject]
     private void Construct(InputActionAsset inputAction)
@@ -24,26 +26,41 @@ public class TransformGun : MonoBehaviour
     {
         _shootAction = _inputActionAsset.FindAction("Shoot");
         _shootAction.performed += Shoot;
+        
     }
 
     private void Shoot(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            
+            BlockInteraction();
         }
     }
 
-    private bool CheckObject()
+    private void BlockInteraction()
     {
         RaycastHit hit;
-        if (Physics.Raycast(rayOrigin.position, transform.forward, out hit, gunDistance, gunLayer))
+        if (Physics.Raycast(rayOrigin.position, rayOrigin.forward, out hit, gunDistance, gunLayer))
         {
-            if(hit.collider.TryGetComponent(out TransformBlock transformBlock))
+            if (!_isGrabbed)
             {
-                return true;
+                if (hit.collider.TryGetComponent(out TransformBlock transformBlock))
+                {
+                    transformBlock.GrabObject(followPoint);
+                    _currentBlock = transformBlock;
+                    _isGrabbed = true;
+                }
             }
+            else
+            {
+                if(hit.collider.TryGetComponent(out TransformBlockPlace transformBlockPlace))
+                {
+                    _currentBlock.ReleaseObject(hit.transform);
+                    _currentBlock = null;
+                    _isGrabbed = false;
+                }
+            }
+            
         }
-        return false;
     }
 }

@@ -46,7 +46,6 @@ public class SecurityCamera : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position, playerVector, out hit))
         {
-            Debug.Log(hit.collider.name);
             /*
             if(!hit.collider.TryGetComponent(out Player _))
             {
@@ -54,7 +53,6 @@ public class SecurityCamera : MonoBehaviour
             }
             */
         }
-        Debug.Log("PLayer detected");
         return checkAngle && checkDistance;
     }
 

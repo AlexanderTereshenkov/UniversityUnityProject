@@ -7,7 +7,7 @@ public class OrderManager : MonoBehaviour
 
     private int[] _currentOrder;
     private int _objectCount;
-    private PuzzleAction _openDoorAction;
+    private PuzzleAction _puzzleAction;
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class OrderManager : MonoBehaviour
             places[i].OnObjectRemoved += RemoveObject;
             _currentOrder[i] = -1;
         }
-        _openDoorAction = GetComponent<PuzzleAction>();
+        _puzzleAction = GetComponent<PuzzleAction>();
     }
 
     private void AddObject(int index, OrderObject orderObject)
@@ -36,7 +36,7 @@ public class OrderManager : MonoBehaviour
     {
         if(_objectCount >= rightOrderIndex.Length)
         {
-            _openDoorAction.CancleAction();
+            _puzzleAction.CancleAction();
         }
         _currentOrder[index] = -1;
         _objectCount--;
@@ -51,7 +51,7 @@ public class OrderManager : MonoBehaviour
                 return;
             }
         }
-        _openDoorAction.PerformAction();
+        _puzzleAction.PerformAction();
     }
 
 }
