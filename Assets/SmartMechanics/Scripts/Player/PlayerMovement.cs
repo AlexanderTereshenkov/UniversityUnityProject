@@ -128,8 +128,10 @@ public class PlayerMovement : MonoBehaviour
         _verticalCameraRotation = Mathf.Clamp(_verticalCameraRotation, -lookAngle, lookAngle);
         _horizontalCameraRotation += mouseDelta.x * Time.deltaTime * mouseSens;
 
-        transform.rotation = Quaternion.Lerp(transform.rotation,
-            Quaternion.Euler(0, _horizontalCameraRotation, 0), Time.deltaTime * cameraAcceleration);
+        transform.rotation = Quaternion.Euler(0, _horizontalCameraRotation, 0);
+
+        //transform.rotation = Quaternion.Lerp(transform.rotation,
+        //    Quaternion.Euler(0, _horizontalCameraRotation, 0), Time.deltaTime * cameraAcceleration);
 
         playerCamera.transform.localRotation = Quaternion.Euler(_verticalCameraRotation, 0, 0);
 

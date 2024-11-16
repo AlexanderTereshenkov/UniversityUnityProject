@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraFOV: 100
-  maxDistance: 15
+  maxDistance: 30
   action: {fileID: 0}
-  reactionTime: 50
+  actionTime: 30
+  reactionTime: 2
   pointLight: {fileID: 6802141497684970791}
   detectionColor: {r: 1, g: 0.42830187, b: 0.42830187, a: 1}
 --- !u!1 &4302207015420097656

@@ -26,7 +26,6 @@ public class TransformGun : MonoBehaviour
     {
         _shootAction = _inputActionAsset.FindAction("Shoot");
         _shootAction.performed += Shoot;
-        
     }
 
     private void Shoot(InputAction.CallbackContext context)
@@ -63,4 +62,5 @@ public class TransformGun : MonoBehaviour
             
         }
     }
+
 }
