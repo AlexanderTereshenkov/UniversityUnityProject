@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TransformBlock : MonoBehaviour
 {
-
+    [SerializeField] private TransformBlockManager manager;
     private bool _isGrabbed;
     private Transform _followTransform;
 
@@ -23,14 +23,15 @@ public class TransformBlock : MonoBehaviour
         _followTransform = followTransform;
         gameObject.layer = 2;
         OnBlockGrabbed?.Invoke();
+        manager.SetVisiblePlaces(true);
     }
 
     public void ReleaseObject(Transform place)
     {
-
         _isGrabbed = false;
         _followTransform = null;
         gameObject.layer = 6;
+        manager.SetVisiblePlaces(false);
     }
 
 }

@@ -8,6 +8,12 @@ public class TransformBlockManager : MonoBehaviour
 
     public void SetVisiblePlaces(bool isVisible)
     {
-
+        foreach (TransformBlockPlace place in places)
+        {
+            if (!place.IsPlaced)
+            {
+                place.ShowHidePlace(isVisible);
+            }
+        }
     }
 }

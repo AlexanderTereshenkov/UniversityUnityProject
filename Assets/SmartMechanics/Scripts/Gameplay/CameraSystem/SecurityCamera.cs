@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SecurityCamera : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class SecurityCamera : MonoBehaviour
     [SerializeField] private BaseAction action;
     [SerializeField] private float actionTime;
     [SerializeField] private float reactionTime;
+    [SerializeField] private Image markImage;
     [Header("Light settings")]
     [SerializeField] private Light pointLight;
     [SerializeField] private Color detectionColor;
@@ -21,6 +23,7 @@ public class SecurityCamera : MonoBehaviour
         _player = FindAnyObjectByType<Player>();
         _actionTimer = actionTime;
         _defaultColor = pointLight.color;
+        markImage.fillAmount = _reactionTimer / reactionTime;
     }
 
     private void Update()
@@ -32,6 +35,7 @@ public class SecurityCamera : MonoBehaviour
             if(reactionTime >= _reactionTimer)
             {
                 _reactionTimer += Time.deltaTime;
+                markImage.fillAmount = _reactionTimer / reactionTime;
                 return;
             }
             if(_actionTimer >= actionTime)
@@ -48,6 +52,7 @@ public class SecurityCamera : MonoBehaviour
         else
         { 
             _reactionTimer = 0;
+            markImage.fillAmount = 0;
         }
 
         if(pointLight.color != _defaultColor)
