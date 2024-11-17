@@ -29,14 +29,18 @@ public class SecurityCamera : MonoBehaviour
         _timer += Time.deltaTime;
         if (CheckPlayerIsInView())
         {
-            if(_timer >= actionTime && Time.time - _lastReactionTime >= reactionTime)
+            if(_timer >= actionTime)
             {
                 BeginAction();
                 _timer = 0;
-                _lastReactionTime = Time.time;
             }
+            _lastReactionTime = Time.time;
             pointLight.color = detectionColor;
             return;
+        }
+        else
+        {
+            _lastReactionTime = Time.time;
         }
         pointLight.color = _defaultColor;
         Debug.DrawRay(transform.position, ((_player.transform.position - transform.position).normalized) * maxDistance, Color.red);

@@ -84943,21 +84943,6 @@ PrefabInstance:
       propertyPath: action
       value: 
       objectReference: {fileID: 35351251418919405}
-    - target: {fileID: 3737960688366886584, guid: 0ccd513d64722714cba3ebb852940b83,
-        type: 3}
-      propertyPath: actionTime
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 3737960688366886584, guid: 0ccd513d64722714cba3ebb852940b83,
-        type: 3}
-      propertyPath: maxDistance
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 3737960688366886584, guid: 0ccd513d64722714cba3ebb852940b83,
-        type: 3}
-      propertyPath: reactionTime
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6591687037250133429, guid: 0ccd513d64722714cba3ebb852940b83,
         type: 3}
       propertyPath: m_LocalRotation.w
