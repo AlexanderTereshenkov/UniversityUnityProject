@@ -12,38 +12,49 @@ public class SecurityCamera : MonoBehaviour
     [SerializeField] private Color detectionColor;
 
     private Player _player;
-    private float _timer;
-    private float _lastReactionTime;
+    private float _actionTimer;
+    private float _reactionTimer;
     private Color _defaultColor;
 
     private void Start()
     {
         _player = FindAnyObjectByType<Player>();
-        _timer = actionTime;
+        _actionTimer = actionTime;
         _defaultColor = pointLight.color;
-        _lastReactionTime = Time.time;
     }
 
     private void Update()
     {
-        _timer += Time.deltaTime;
+        _actionTimer += Time.deltaTime;
+
         if (CheckPlayerIsInView())
         {
-            if(_timer >= actionTime)
+            if(reactionTime >= _reactionTimer)
+            {
+                _reactionTimer += Time.deltaTime;
+                return;
+            }
+            if(_actionTimer >= actionTime)
             {
                 BeginAction();
-                _timer = 0;
+                _actionTimer = 0;
             }
-            _lastReactionTime = Time.time;
-            pointLight.color = detectionColor;
+            if(pointLight.color != detectionColor)
+            {
+                pointLight.color = detectionColor;
+            }
             return;
         }
         else
-        {
-            _lastReactionTime = Time.time;
+        { 
+            _reactionTimer = 0;
         }
-        pointLight.color = _defaultColor;
-        Debug.DrawRay(transform.position, ((_player.transform.position - transform.position).normalized) * maxDistance, Color.red);
+
+        if(pointLight.color != _defaultColor)
+        {
+            pointLight.color = _defaultColor;
+        }
+
     }
 
     private bool CheckPlayerIsInView()
