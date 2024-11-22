@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6592728376906252972}
   - component: {fileID: 2541142043563226209}
   - component: {fileID: 3867657502810271226}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SmallUpStairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}

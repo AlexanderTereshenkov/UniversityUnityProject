@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &504248294594179118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1580301746659415156}
+  m_Layer: 7
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1580301746659415156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504248294594179118}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.024, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 786524527172955863}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &784189495586674564
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +463,7 @@ Transform:
   - {fileID: 7067336518858927337}
   - {fileID: 5792520047478004270}
   - {fileID: 8952579183695425620}
+  - {fileID: 1580301746659415156}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &5887459560917329011
@@ -475,13 +507,19 @@ MonoBehaviour:
   playerCamera: {fileID: 703299482900687890}
   hand: {fileID: 3236822890188910155}
   torch: {fileID: 5545094303209909694}
+  groundCheckTransform: {fileID: 1580301746659415156}
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  sphereRadius: 0.3
   speed: 5
   mouseSens: 5
-  gravityScale: -10
+  gravityScale: -15
   cameraAcceleration: 9
   handAcceleration: 5
   lookAngle: 45
   runningScale: 2
+  jumpHeight: 2
   frequency: 5
   frequencyScale: 1.5
   amplitude: 0.05
@@ -885,7 +923,7 @@ Transform:
   m_GameObject: {fileID: 8343223615606428173}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 3.98}
+  m_LocalPosition: {x: 0, y: -0.21, z: 5.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

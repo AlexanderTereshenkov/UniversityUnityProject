@@ -11,6 +11,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera playerCamera;
     [SerializeField] private Transform hand;
     [SerializeField] private GameObject torch;
+    [Header("Ground checking")]
+    [SerializeField] private Transform groundCheckTransform;
+    [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private float sphereRadius;
 
     [Header("Player and camera settings")]
     [SerializeField] private float speed;
@@ -21,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float lookAngle;
     [Range(0, 10)]
     [SerializeField] private float runningScale;
+    [SerializeField] private float jumpHeight;
     [Header("Camera bobbing")]
     [SerializeField] private float frequency;
     [SerializeField] private float frequencyScale;
@@ -36,11 +41,13 @@ public class PlayerMovement : MonoBehaviour
     private InputAction _runAction;
     private InputAction _lookAction;
     private InputAction _toggleTorchAction;
+    private InputAction _jumpAction;
 
     private float _verticalCameraRotation;
     private float _horizontalCameraRotation;
     private Vector3 _cameraStartLocalPosition;
     private float _headBobbingTimer;
+    private bool _isGrounded;
 
     private Vector3 _velocity;
 
@@ -54,15 +61,16 @@ public class PlayerMovement : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
 
-
         _inputActionAsset.Enable();
 
         _moveAction = _inputActionAsset.FindAction("Movement");
         _runAction = _inputActionAsset.FindAction("Run");
         _lookAction = _inputActionAsset.FindAction("Look");
         _toggleTorchAction = _inputActionAsset.FindAction("ToggleTorch");
+        _jumpAction = _inputActionAsset.FindAction("Jump");
 
         _toggleTorchAction.performed += ToggleTorch;
+        //_jumpAction.performed += JumpAction;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -78,6 +86,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
+
+        _isGrounded = Physics.CheckSphere(groundCheckTransform.position, sphereRadius, groundLayerMask);
+
+        //movement
         Vector2 input = _moveAction.ReadValue<Vector2>().normalized;
 
         Vector3 movement = new Vector3(input.x, 0, input.y);
@@ -100,17 +112,23 @@ public class PlayerMovement : MonoBehaviour
             ReturnCameraPosition();
         }
 
-        if (!_characterController.isGrounded)
+        _characterController.Move(movement);
+
+
+        //jumping and gravity
+        if (_isGrounded && _velocity.y < 0)
         {
-            _velocity.y += gravityScale * Time.deltaTime * Time.deltaTime;
-            _characterController.Move(_velocity);
-        }
-        else
-        {
-            _velocity.y = 0;
+            _velocity.y = -2;
         }
 
-        _characterController.Move(movement);
+        if(_isGrounded && _jumpAction.WasPerformedThisFrame())
+        {
+            _velocity.y = (float)Math.Sqrt(-2f * jumpHeight * gravityScale);
+        }
+
+        _velocity.y += gravityScale * Time.deltaTime;
+
+        _characterController.Move(Time.deltaTime * _velocity);
 
     }
 
@@ -147,6 +165,5 @@ public class PlayerMovement : MonoBehaviour
             torch.SetActive(!torch.activeInHierarchy);
         }
     }
-
 
 }

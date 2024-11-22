@@ -8,6 +8,7 @@ public class SecurityCamera : MonoBehaviour
     [SerializeField] private BaseAction action;
     [SerializeField] private float actionTime;
     [SerializeField] private float reactionTime;
+    [SerializeField] private float detectionLightCoolDown;
     [SerializeField] private Image markImage;
     [Header("Light settings")]
     [SerializeField] private Light pointLight;
@@ -16,6 +17,7 @@ public class SecurityCamera : MonoBehaviour
     private Player _player;
     private float _actionTimer;
     private float _reactionTimer;
+    private float _lightCoolDownTimer;
     private Color _defaultColor;
 
     private void Start()
@@ -46,6 +48,7 @@ public class SecurityCamera : MonoBehaviour
             if(pointLight.color != detectionColor)
             {
                 pointLight.color = detectionColor;
+                _lightCoolDownTimer = 0;
             }
             return;
         }
@@ -55,7 +58,9 @@ public class SecurityCamera : MonoBehaviour
             markImage.fillAmount = 0;
         }
 
-        if(pointLight.color != _defaultColor)
+        _lightCoolDownTimer += Time.deltaTime;
+
+        if(pointLight.color != _defaultColor && _lightCoolDownTimer >= detectionLightCoolDown)
         {
             pointLight.color = _defaultColor;
         }

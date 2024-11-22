@@ -126,7 +126,8 @@ MonoBehaviour:
   maxDistance: 30
   action: {fileID: 0}
   actionTime: 30
-  reactionTime: 2
+  reactionTime: 4
+  detectionLightCoolDown: 2
   markImage: {fileID: 605095915068942868}
   pointLight: {fileID: 6802141497684970791}
   detectionColor: {r: 1, g: 0.42830187, b: 0.42830187, a: 1}
