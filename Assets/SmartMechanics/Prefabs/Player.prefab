@@ -517,7 +517,7 @@ MonoBehaviour:
   gravityScale: -15
   cameraAcceleration: 9
   handAcceleration: 5
-  lookAngle: 45
+  lookAngle: 80
   runningScale: 2
   jumpHeight: 2
   frequency: 5
@@ -923,7 +923,7 @@ Transform:
   m_GameObject: {fileID: 8343223615606428173}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.21, z: 5.82}
+  m_LocalPosition: {x: 0, y: -0.21, z: 4.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

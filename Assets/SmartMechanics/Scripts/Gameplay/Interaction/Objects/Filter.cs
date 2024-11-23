@@ -3,11 +3,9 @@ using UnityEngine;
 public class Filter : MonoBehaviour, IInteractible
 {
 
-    [SerializeField] private string rayDescription;
-
     public string GetStringDescription()
     {
-        return rayDescription;
+        return StringConstants.FilerInteractibleDesc;
     }
 
     public void Interact(Inventory inventory)

@@ -13,7 +13,7 @@ public class DoorButton : MonoBehaviour, IInteractible
 
     public string GetStringDescription()
     {
-        return "ֽאזלטעו E";
+        return StringConstants.DefaultInteractibleDesc;
     }
 
     public void Interact(Inventory inventory)

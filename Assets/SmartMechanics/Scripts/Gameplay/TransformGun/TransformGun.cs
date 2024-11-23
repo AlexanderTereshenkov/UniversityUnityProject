@@ -45,7 +45,7 @@ public class TransformGun : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(rayOrigin.position, rayOrigin.forward, out hit, gunDistance, gunLayer))
+        if (Physics.Raycast(rayOrigin.position, rayOrigin.forward, out hit, gunDistance))
         {
             if (!_isGrabbed)
             {

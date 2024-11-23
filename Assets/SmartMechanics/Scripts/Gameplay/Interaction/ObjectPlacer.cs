@@ -9,7 +9,7 @@ public class ObjectPlacer : MonoBehaviour, IInteractible
 
     public string GetStringDescription()
     {
-        return "ֽאזלטעו ֵ";
+        return StringConstants.DefaultInteractibleDesc;
     }
 
     public void Interact(Inventory inventory)

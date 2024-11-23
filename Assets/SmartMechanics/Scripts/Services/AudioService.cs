@@ -5,6 +5,8 @@ using UnityEngine;
 public class AudioService : MonoBehaviour
 {
     [SerializeField] private AudioContainer[] audioContainer;
+    //Main Audio Source. Made for long audio
+    [SerializeField] private AudioSource mainAudioSource;
 
     private Dictionary<AudioType, AudioClip> _clips = new Dictionary<AudioType, AudioClip>();
     private AudioSource _audioSource;
@@ -21,6 +23,16 @@ public class AudioService : MonoBehaviour
     public void PlayOneShotSound(AudioType audioType, float volume = 1f)
     {
         _audioSource.PlayOneShot(_clips[audioType], volume);
+    }
+
+    public void PlayAudio(AudioClip audioClip, float volume = 1f)
+    {
+        if (!mainAudioSource.isPlaying)
+        {
+            mainAudioSource.clip = audioClip;
+            mainAudioSource.volume = volume;
+            mainAudioSource.Play();
+        }
     }
 
 

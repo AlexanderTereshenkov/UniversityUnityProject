@@ -1,10 +1,9 @@
 using Reflex.Attributes;
 using UnityEngine;
 
-public class Meds : MonoBehaviour, IInteractible
+public class Pills : MonoBehaviour, IInteractible
 {
     [SerializeField] private float healValue;
-    [SerializeField] private string description; 
 
     private NegativeEffect _negativeEffect;
 
@@ -16,7 +15,7 @@ public class Meds : MonoBehaviour, IInteractible
 
     public string GetStringDescription()
     {
-        return description;
+        return StringConstants.PillsInteractibleDesc;
     }
 
     public void Interact(Inventory inventory)

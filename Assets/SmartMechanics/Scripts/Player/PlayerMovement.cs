@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
 
-        _isGrounded = Physics.CheckSphere(groundCheckTransform.position, sphereRadius, groundLayerMask);
+        _isGrounded = CheckGround();
 
         //movement
         Vector2 input = _moveAction.ReadValue<Vector2>().normalized;
@@ -136,6 +136,11 @@ public class PlayerMovement : MonoBehaviour
     {
         playerCamera.transform.localPosition = Vector3.Lerp(playerCamera.transform.localPosition,
             _cameraStartLocalPosition, Time.deltaTime * cameraReturnTime);
+    }
+
+    private bool CheckGround()
+    {
+        return Physics.Raycast(groundCheckTransform.position, Vector3.down, sphereRadius);
     }
 
     private void Look()
