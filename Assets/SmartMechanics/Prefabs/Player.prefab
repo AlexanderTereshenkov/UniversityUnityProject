@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 504248294594179118}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.024, z: 0}
+  m_LocalPosition: {x: 0, y: -0.799, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -437,6 +437,7 @@ GameObject:
   - component: {fileID: 6098734483362762495}
   - component: {fileID: 2437344769191069620}
   - component: {fileID: 7705026376431351126}
+  - component: {fileID: 3748330354508672931}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -508,10 +509,10 @@ MonoBehaviour:
   hand: {fileID: 3236822890188910155}
   torch: {fileID: 5545094303209909694}
   groundCheckTransform: {fileID: 1580301746659415156}
-  groundLayerMask:
+  ignoreLayer:
     serializedVersion: 2
-    m_Bits: 256
-  sphereRadius: 0.3
+    m_Bits: 128
+  sphereRadius: 0.4
   speed: 5
   mouseSens: 5
   gravityScale: -15
@@ -566,6 +567,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed59a7ecb3aa8f449b92cbe6ecedcd06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &3748330354508672931
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001738649631207173}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88ff8cbd7fb9f7544963779579a4aed0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7165272094252252406
 GameObject:
   m_ObjectHideFlags: 0

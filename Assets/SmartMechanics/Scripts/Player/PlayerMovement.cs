@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject torch;
     [Header("Ground checking")]
     [SerializeField] private Transform groundCheckTransform;
-    [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private LayerMask ignoreLayer;
     [SerializeField] private float sphereRadius;
 
     [Header("Player and camera settings")]
@@ -48,13 +48,16 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _cameraStartLocalPosition;
     private float _headBobbingTimer;
     private bool _isGrounded;
+    private AudioService _audioService;
+    private Animator _animator;
 
     private Vector3 _velocity;
 
     [Inject]
-    private void Construct(InputActionAsset inputAction)
+    private void Construct(InputActionAsset inputAction, AudioService audioService)
     {
         _inputActionAsset = inputAction;
+        _audioService = audioService;
     }
 
     private void Start()
@@ -76,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
         Cursor.visible = false;
 
         _cameraStartLocalPosition = playerCamera.transform.localPosition;
+        _animator = GetComponent<Animator>();
+        ignoreLayer = ~ignoreLayer;
     }
 
     private void Update()
@@ -96,7 +101,16 @@ public class PlayerMovement : MonoBehaviour
         movement = transform.TransformDirection(movement);
         movement *= speed * Time.deltaTime * (_runAction.IsPressed() ? runningScale : 1);
 
-        if(movement.magnitude > 0)
+        _animator.SetFloat("Speed", movement.magnitude);
+
+        if (!_isGrounded)
+        {
+            _animator.SetFloat("Speed", 0);
+        }
+
+        _animator.SetBool("Run", _isGrounded & _runAction.IsPressed());
+
+        if (movement.magnitude > 0)
         {
             _headBobbingTimer += Time.deltaTime;
             var tempFreq = frequency * (_runAction.IsPressed() ? frequencyScale : 1);
@@ -114,7 +128,6 @@ public class PlayerMovement : MonoBehaviour
 
         _characterController.Move(movement);
 
-
         //jumping and gravity
         if (_isGrounded && _velocity.y < 0)
         {
@@ -130,6 +143,13 @@ public class PlayerMovement : MonoBehaviour
 
         _characterController.Move(Time.deltaTime * _velocity);
 
+        Debug.DrawRay(groundCheckTransform.position, Vector3.down * sphereRadius);
+
+    }
+
+    public void PlayStepSound()
+    {
+        _audioService.PlayOneShotSound(AudioType.Step);
     }
 
     private void ReturnCameraPosition()
@@ -140,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool CheckGround()
     {
-        return Physics.Raycast(groundCheckTransform.position, Vector3.down, sphereRadius);
+        return Physics.Raycast(groundCheckTransform.position, Vector3.down, sphereRadius, ignoreLayer);
     }
 
     private void Look()

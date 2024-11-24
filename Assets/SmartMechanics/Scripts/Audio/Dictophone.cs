@@ -1,17 +1,16 @@
-using Reflex.Attributes;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Dictophone : MonoBehaviour, IInteractible
 {
     [SerializeField] private AudioClip audioClip;
-    private AudioService _audioService;
 
-    [Inject]
-    private void Construct(AudioService audioService)
+    private AudioSource _audioSorce;
+
+    private void Start()
     {
-        _audioService = audioService;
+        _audioSorce = GetComponent<AudioSource>();
     }
-
     public string GetStringDescription()
     {
         return StringConstants.DefaultInteractibleDesc;
@@ -19,7 +18,16 @@ public class Dictophone : MonoBehaviour, IInteractible
 
     public void Interact(Inventory inventory)
     {
-        _audioService.PlayAudio(audioClip);
+        PlayAudio();
+    }
+
+    private void PlayAudio()
+    {
+        if (!_audioSorce.isPlaying)
+        {
+            _audioSorce.clip = audioClip;
+            _audioSorce.Play();
+        }
     }
 
 }
