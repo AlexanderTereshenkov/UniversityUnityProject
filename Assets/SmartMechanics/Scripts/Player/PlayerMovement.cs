@@ -54,17 +54,15 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _velocity;
 
     [Inject]
-    private void Construct(InputActionAsset inputAction, AudioService audioService)
+    private void Construct(AudioService audioService, InputManager inputManager)
     {
-        _inputActionAsset = inputAction;
         _audioService = audioService;
+        _inputActionAsset = inputManager.ActionAsset;
     }
 
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
-
-        _inputActionAsset.Enable();
 
         _moveAction = _inputActionAsset.FindAction("Movement");
         _runAction = _inputActionAsset.FindAction("Run");

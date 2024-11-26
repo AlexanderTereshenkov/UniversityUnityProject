@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameBootstrap : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    [SerializeField] private Player player;
 
+    public Player GetPlayer() => player;
 }

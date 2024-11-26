@@ -28,11 +28,11 @@ public class Gasmask : MonoBehaviour
 
 
     [Inject]
-    private void Construct(AudioService audioService, WorldSettings worldSettings, InputActionAsset inputAction)
+    private void Construct(AudioService audioService, WorldSettings worldSettings, InputManager inputManager)
     {
         _audioService = audioService;
         _worldSettings = worldSettings;
-        _inputActionAsset = inputAction;
+        _inputActionAsset = inputManager.ActionAsset;
     }
 
     private void Start()

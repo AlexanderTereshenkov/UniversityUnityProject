@@ -21,9 +21,9 @@ public class TransformGun : MonoBehaviour
     //private LineRenderer _lineRenderer;
 
     [Inject]
-    private void Construct(InputActionAsset inputAction)
+    private void Construct(InputManager inputManager)
     {
-        _inputActionAsset = inputAction;
+        _inputActionAsset = inputManager.ActionAsset;
     }
 
     private void Start()
