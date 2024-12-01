@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class BootSceneLoader : MonoBehaviour
 {
-
     void Start()
     {
         var bootScene = SceneManager.GetActiveScene();

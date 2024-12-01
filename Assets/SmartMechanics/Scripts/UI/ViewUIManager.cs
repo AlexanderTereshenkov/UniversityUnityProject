@@ -50,6 +50,7 @@ public enum ViewType
     Gameplay,
     PauseMenu,
     Inventory,
-    EndScreen
+    EndScreen,
+    LoseScreen
 }
 

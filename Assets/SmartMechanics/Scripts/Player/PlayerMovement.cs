@@ -150,6 +150,14 @@ public class PlayerMovement : MonoBehaviour
         _audioService.PlayOneShotSound(AudioType.Step);
     }
 
+    public void TeleportPlayer(Transform newPosition)
+    {
+        _characterController.enabled = false;
+        transform.position = newPosition.position;
+        transform.rotation = newPosition.rotation;
+        _characterController.enabled = true;
+    }
+
     private void ReturnCameraPosition()
     {
         playerCamera.transform.localPosition = Vector3.Lerp(playerCamera.transform.localPosition,

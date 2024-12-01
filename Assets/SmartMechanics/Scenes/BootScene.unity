@@ -288,7 +288,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputManager: {fileID: 606285200}
-  player: {fileID: 0}
 --- !u!114 &1573668195
 MonoBehaviour:
   m_ObjectHideFlags: 0

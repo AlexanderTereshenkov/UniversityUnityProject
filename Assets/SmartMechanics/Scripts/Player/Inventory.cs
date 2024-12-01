@@ -2,7 +2,7 @@ using Reflex.Attributes;
 using System;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : Restartable
 {
 
     [SerializeField] private Transform handPosition;
@@ -81,4 +81,13 @@ public class Inventory : MonoBehaviour
         DeleteFromInventory();
     }
 
+    public override void Restart(Player player)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void Restart()
+    {
+        DeleteFromInventory();
+    }
 }

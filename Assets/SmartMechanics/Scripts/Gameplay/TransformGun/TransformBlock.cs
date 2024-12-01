@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+
 public class TransformBlock : MonoBehaviour
 {
     [SerializeField] private TransformBlockManager manager;
@@ -14,7 +15,7 @@ public class TransformBlock : MonoBehaviour
         if (!_isGrabbed)
             return;
 
-        transform.position = Vector3.Slerp(transform.position, _followTransform.position, Time.deltaTime * 10);
+        transform.position = Vector3.Slerp(transform.position, _followTransform.position, Time.deltaTime * 15);
     }
 
     public void GrabObject(Transform followTransform)
