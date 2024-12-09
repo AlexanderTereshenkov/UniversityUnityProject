@@ -81,11 +81,6 @@ public class Inventory : Restartable
         DeleteFromInventory();
     }
 
-    public override void Restart(Player player)
-    {
-        throw new NotImplementedException();
-    }
-
     public override void Restart()
     {
         DeleteFromInventory();

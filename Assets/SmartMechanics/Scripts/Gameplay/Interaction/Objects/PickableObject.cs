@@ -1,3 +1,4 @@
+using Reflex.Attributes;
 using System;
 using UnityEngine;
 
@@ -12,21 +13,32 @@ public abstract class PickableObject : MonoBehaviour, IInteractible, IPickable
     [Header("Key for object placing")]
     [SerializeField] private string objectKey;
 
-    private Rigidbody _rigidbody;
+    protected Player _player;
+    protected RespawnManager _respawnManager;
+    protected Vector3 _startPosition;
+    protected Rigidbody _rigidbody;
 
     public bool IsPickable { get; set; }
 
     public event Action OnObjectPicked;
 
-    private void Start()
+    [Inject]
+    private void Construct(Player player, RespawnManager respawnManager)
+    {
+        _player = player;
+        _respawnManager = respawnManager;
+    }
+
+    public virtual void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         IsPickable = true;
+        _startPosition = transform.position;
     }
 
     public void Drop()
     {
-        gameObject.transform.parent = null;
+        transform.parent = null;
         _rigidbody.isKinematic = false;
         _rigidbody.AddForce(transform.forward * throwForce);
     }

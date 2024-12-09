@@ -1,27 +1,36 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Reflex.Attributes;
 
 public class RespawnManager : MonoBehaviour
 {
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private Player player;
 
-    private List<Restartable> restartables = new();
+    private Player _player;
+    private List<IRestartable> restartables = new();
 
-    public void Register(Restartable restartable)
+    [Inject]
+    private void Construct(Player player)
+    {
+        _player = player;
+    }
+
+    public void Register(IRestartable restartable)
     {
         restartables.Add(restartable);
     }
 
     public void RestartObjects(bool resetLevel)
     {
-        foreach (Restartable restartable in restartables)
+        foreach (IRestartable restartable in restartables)
         {
             restartable.Restart();
         }
         if (resetLevel)
         {
-            player.GetPlayerMovement().TeleportPlayer(spawnPoint);
+            _player.GetPlayerMovement().TeleportPlayer(spawnPoint);
         }
+        _player.GetGeigerCounter().CoolDownTime = 0;
+        _player.GetGeigerCounter().IsPlaying = false;
     }
 }

@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 
 
-public class NegativeEffect : Restartable
+public class NegativeEffect : MonoBehaviour, IRestartable
 {
     private float _radiationValue;
     private NegativeEffectUIProvider _uiProvider;
@@ -39,12 +39,7 @@ public class NegativeEffect : Restartable
         }
     }
 
-    public override void Restart(Player player)
-    {
-        throw new NotImplementedException();
-    }
-
-    public override void Restart()
+    public void Restart()
     {
         _radiationValue = 0;
         OnValueChanged?.Invoke(_radiationValue);

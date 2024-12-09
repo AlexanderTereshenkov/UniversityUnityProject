@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 
-public class Gasmask : Restartable
+public class Gasmask : MonoBehaviour, IRestartable
 {
 
     [SerializeField] private float workingTime;
@@ -104,12 +104,7 @@ public class Gasmask : Restartable
         }
     }
 
-    public override void Restart(Player player)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void Restart()
+    public void Restart()
     {
         IsMaskOn = false;
         if (_worldSettings.GetGlobalVolume().profile.TryGet(out Vignette vignette))
