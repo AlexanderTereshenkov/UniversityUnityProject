@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(LineRenderer))]
-public class TransformGun : MonoBehaviour
+public class TransformGun : MonoBehaviour, IRestartable
 {
     [Header("Gun settings")]
     [SerializeField] private Transform rayOrigin;
@@ -18,12 +18,14 @@ public class TransformGun : MonoBehaviour
     private InputAction _shootAction;
     private bool _isGrabbed;
     private TransformBlock _currentBlock;
+    private RespawnManager _respawnManager;
     //private LineRenderer _lineRenderer;
 
     [Inject]
-    private void Construct(InputActionAsset inputAction)
+    private void Construct(InputManager inputManager, RespawnManager respawnManager)
     {
-        _inputActionAsset = inputAction;
+        _inputActionAsset = inputManager.ActionAsset;
+        _respawnManager = respawnManager;
     }
 
     private void Start()
@@ -31,6 +33,7 @@ public class TransformGun : MonoBehaviour
         _shootAction = _inputActionAsset.FindAction("Shoot");
         _shootAction.performed += Shoot;
         //_lineRenderer = GetComponent<LineRenderer>();
+        _respawnManager.Register(this);
     }
 
     private void Shoot(InputAction.CallbackContext context)
@@ -61,12 +64,19 @@ public class TransformGun : MonoBehaviour
                 if (hit.collider.TryGetComponent(out TransformBlockPlace transformBlockPlace))
                 {
                     transformBlockPlace.SetBlock(_currentBlock);
-                    _currentBlock.ReleaseObject(hit.transform);
+                    _currentBlock.ReleaseObject();
                     _currentBlock = null;
                     _isGrabbed = false;
                 }
             }
         }
+    }
+
+    public void Restart()
+    {
+        _currentBlock?.ReleaseObject();
+        _isGrabbed = false;
+        _currentBlock = null;
     }
 
     //Do it later, visual for laser

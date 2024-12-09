@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 
-public class Gasmask : MonoBehaviour
+public class Gasmask : MonoBehaviour, IRestartable
 {
 
     [SerializeField] private float workingTime;
@@ -22,17 +22,20 @@ public class Gasmask : MonoBehaviour
     private bool _isSignalPlayed = false;
     private AudioService _audioService;
     private WorldSettings _worldSettings;
+    private RespawnManager _respawnManager;
 
     public bool IsMaskOn { get; private set; }
     public bool IsMaskWorking { get; private set; }
 
 
     [Inject]
-    private void Construct(AudioService audioService, WorldSettings worldSettings, InputActionAsset inputAction)
+    private void Construct(AudioService audioService, WorldSettings worldSettings, InputManager inputManager, 
+        RespawnManager respawnManager)
     {
         _audioService = audioService;
         _worldSettings = worldSettings;
-        _inputActionAsset = inputAction;
+        _inputActionAsset = inputManager.ActionAsset;
+        _respawnManager = respawnManager;
     }
 
     private void Start()
@@ -51,6 +54,7 @@ public class Gasmask : MonoBehaviour
 
         _putAction.performed += PutGasmask;
         _changeFilterAction.performed += ChangeFilter;
+        _respawnManager.Register(this);
     }
 
     private void Update()
@@ -100,4 +104,12 @@ public class Gasmask : MonoBehaviour
         }
     }
 
+    public void Restart()
+    {
+        IsMaskOn = false;
+        if (_worldSettings.GetGlobalVolume().profile.TryGet(out Vignette vignette))
+        {
+            vignette.intensity.Override(IsMaskOn ? maxVignette : minVignette);
+        }
+    }
 }

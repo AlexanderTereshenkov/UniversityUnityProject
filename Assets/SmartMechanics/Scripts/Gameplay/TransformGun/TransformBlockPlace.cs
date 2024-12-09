@@ -1,17 +1,26 @@
+using Reflex.Attributes;
 using UnityEngine;
 
-public class TransformBlockPlace : MonoBehaviour
+public class TransformBlockPlace : MonoBehaviour, IRestartable
 {
     [SerializeField] private Transform blockPlace;
     [SerializeField] private Light placeLightMarker;
     private TransformBlock _block;
     private PuzzleAction _action;
+    private RespawnManager _respawnManager;
+
+    [Inject]
+    private void Construct(RespawnManager respawnManager)
+    {
+        _respawnManager = respawnManager;
+    }
     public bool IsPlaced { get; private set; }
 
     private void Start()
     {
         placeLightMarker.enabled = false;
         _action = GetComponent<PuzzleAction>();
+        _respawnManager.Register(this);
     }
 
     public void SetBlock(TransformBlock block)
@@ -44,5 +53,10 @@ public class TransformBlockPlace : MonoBehaviour
         }
         if(_action != null)
             _action.CancleAction();
+    }
+
+    public void Restart()
+    {
+        OnGrabObject();
     }
 }

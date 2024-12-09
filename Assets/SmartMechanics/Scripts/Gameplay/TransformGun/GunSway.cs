@@ -10,9 +10,9 @@ public class GunSway : MonoBehaviour
     private InputAction _mouseAction;
 
     [Inject]
-    private void Construct(InputActionAsset inputActions)
+    private void Construct(InputManager inputManager)
     {
-        _mouseAction = inputActions.FindAction("Look");
+        _mouseAction = inputManager.ActionAsset.FindAction("Look");
     }
 
     private void Update()

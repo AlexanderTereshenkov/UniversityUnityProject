@@ -1,6 +1,7 @@
+using Reflex.Attributes;
 using UnityEngine;
 
-public class OrderManager : MonoBehaviour
+public class OrderManager : MonoBehaviour, IRestartable
 {
     [SerializeField] private int[] rightOrderIndex;
     [SerializeField] private ObjectPlace[] places;
@@ -8,6 +9,13 @@ public class OrderManager : MonoBehaviour
     private int[] _currentOrder;
     private int _objectCount;
     private PuzzleAction _puzzleAction;
+    private RespawnManager _respawnManager;
+
+    [Inject]
+    private void Construct(RespawnManager respawnManager)
+    {
+        _respawnManager = respawnManager;
+    }
 
     private void Start()
     {
@@ -20,6 +28,7 @@ public class OrderManager : MonoBehaviour
             _currentOrder[i] = -1;
         }
         _puzzleAction = GetComponent<PuzzleAction>();
+        _respawnManager.Register(this);
     }
 
     private void AddObject(int index, OrderObject orderObject)
@@ -54,4 +63,15 @@ public class OrderManager : MonoBehaviour
         _puzzleAction.PerformAction();
     }
 
+    public void Restart()
+    {
+        for (int i = 0; i < rightOrderIndex.Length; i++)
+        {
+            places[i].PlaceIndex = i;
+            places[i].OnObjectPlaced += AddObject;
+            places[i].OnObjectRemoved += RemoveObject;
+            _currentOrder[i] = -1;
+        }
+        _objectCount = 0;
+    }
 }

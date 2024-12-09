@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class FunctionButtonsHandler : MonoBehaviour
 {
+    private InputManager _inputManager;
     private InputActionAsset _inputActions;
     private InputAction _inventoryAtion;
     private InputAction _pauseAction;
@@ -11,15 +12,16 @@ public class FunctionButtonsHandler : MonoBehaviour
     private ViewUIManager _viewUIManager;
 
     [Inject]
-    private void Construct(InputActionAsset inputActions, ViewUIManager viewUIManager)
+    private void Construct(ViewUIManager viewUIManager, InputManager inputManager)
     {
-        _inputActions = inputActions;
         _viewUIManager = viewUIManager;
+        _inputManager = inputManager;
+        _inputActions = _inputManager.ActionAsset;
     }
 
     private void Start()
     {
-        _inventoryAtion =  _inputActions.FindAction("Inventory");
+        _inventoryAtion = _inputActions.FindAction("Inventory");
         _pauseAction = _inputActions.FindAction("Pause");
 
         _inventoryAtion.performed += context =>
@@ -30,14 +32,14 @@ public class FunctionButtonsHandler : MonoBehaviour
                 if (!inventoryPage.InventoryPage.activeInHierarchy)
                 {
                     inventoryPage.Show();
-                    _inputActions.FindActionMap("Player").Disable();
+                    _inputManager.DisableActionMap("Player");
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                 }
                 else
                 {
                     inventoryPage.Hide();
-                    _inputActions.FindActionMap("Player").Enable();
+                    _inputManager.EnableActionMap("Player");
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
                 }

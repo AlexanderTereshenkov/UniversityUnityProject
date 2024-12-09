@@ -1,7 +1,8 @@
+using Reflex.Attributes;
 using System;
 using UnityEngine;
 
-public class ObjectPlace : MonoBehaviour, IInteractible
+public class ObjectPlace : MonoBehaviour, IInteractible, IRestartable
 {
     [SerializeField] private string key;
     [SerializeField] private string description;
@@ -9,11 +10,23 @@ public class ObjectPlace : MonoBehaviour, IInteractible
 
     private bool _isFull;
     private PickableObject _currentObject;
+    private RespawnManager _respawnManager;
 
     public int PlaceIndex { get; set; }
 
     public event Action<int, OrderObject> OnObjectPlaced;
     public event Action<int> OnObjectRemoved;
+
+    [Inject]
+    private void Construct(RespawnManager respawnManager)
+    {
+        _respawnManager = respawnManager;
+    }
+
+    private void Start()
+    {
+        _respawnManager.Register(this);
+    }
 
     public string GetStringDescription()
     {
@@ -44,6 +57,17 @@ public class ObjectPlace : MonoBehaviour, IInteractible
             }
             _isFull = true;
         }
+    }
+
+    public void Restart()
+    {
+        if(_currentObject != null)
+        {
+            _currentObject.OnObjectPicked -= ObjectPicked;
+            OnObjectRemoved?.Invoke(PlaceIndex);
+            _currentObject = null;
+        }
+        _isFull = false; 
     }
 
     private void ObjectPicked()

@@ -18,10 +18,10 @@ public class RayInteractor : MonoBehaviour
     private ViewUIManager _viewUIManager;
 
     [Inject]
-    private void Construct(ViewUIManager viewUIManager, InputActionAsset inputAction)
+    private void Construct(ViewUIManager viewUIManager, InputManager inputManager)
     {
         _viewUIManager = viewUIManager;
-        _actionAsset = inputAction;
+        _actionAsset = inputManager.ActionAsset;
     }
 
     private void Start()
