@@ -12,6 +12,14 @@ public class LoseScreenPage : View
 
     private GameplayHandler _gameplayHandler;
 
+    public GameObject LoseScreen
+    {
+        get
+        {
+            return looseScreenPage;
+        }
+    }
+
     [Inject]
     private void Construct(GameplayHandler gameplayHandler)
     {

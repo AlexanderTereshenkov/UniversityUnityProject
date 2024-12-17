@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameplayHandler : MonoBehaviour
 {
@@ -40,17 +39,7 @@ public class GameplayHandler : MonoBehaviour
         ShowHideCursor(false);
     }
 
-    public void Pause()
-    {
-
-    }
-
-    public void Continue()
-    {
-
-    }
-
-    private void ShowHideCursor(bool isVisible)
+    public void ShowHideCursor(bool isVisible)
     {
         Cursor.lockState = isVisible ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = isVisible;
