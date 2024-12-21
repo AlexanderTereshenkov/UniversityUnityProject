@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using Reflex.Attributes;
 using UnityEngine;
 
 public class InitializeGameplay : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Camera _camera;
+
+    private SceneLoader _sceneLoader;
+
+    [Inject]
+    private void Construct(SceneLoader sceneLoader)
     {
-        
+        _sceneLoader = sceneLoader;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+
+        // _sceneLoader.EnableDisableCamera(_camera, true);
+        Debug.Log(_sceneLoader == null);
     }
 }

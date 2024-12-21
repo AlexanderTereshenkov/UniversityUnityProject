@@ -39639,6 +39639,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewType: 1
   pausePage: {fileID: 1517795090}
+  mainMenu:
+    sceneAsset: {fileID: 102900000, guid: 3f2935abd744f0d438178800ece5cd9d, type: 3}
+    required: 0
+    buildIndex: 1
   continueButton: {fileID: 239916323}
   exitButton: {fileID: 910987629}
 --- !u!4 &856387485 stripped
