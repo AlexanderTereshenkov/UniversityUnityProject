@@ -509,6 +509,7 @@ MonoBehaviour:
   geigerCounter: {fileID: 7041007521472796921}
   playerGasmask: {fileID: 7940189010874145129}
   inventory: {fileID: 2437344769191069620}
+  playerMovement: {fileID: 6132076942850371359}
 --- !u!114 &6132076942850371359
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class SceneLoader : MonoBehaviour
         var bootScene = SceneManager.GetSceneByName("BootScene");
         var sessionScene = SceneManager.LoadScene(buildIndex, new LoadSceneParameters(LoadSceneMode.Additive));
         ReflexSceneManager.OverrideSceneParentContainer(scene: sessionScene, parent: bootScene.GetSceneContainer());
+        
         if (_isSceneLoaded)
         {
             AsyncOperation unloadAsync = SceneManager.UnloadSceneAsync(_currentSceneIndex);
@@ -24,7 +25,9 @@ public class SceneLoader : MonoBehaviour
         }
         _currentSceneIndex = buildIndex;
         _isSceneLoaded = true;
-        
+        //make scene active but in next frame, FIX IT
+        yield return null;
+        SceneManager.SetActiveScene(sessionScene);
     }
 
 }
