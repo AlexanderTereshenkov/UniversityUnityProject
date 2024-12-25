@@ -63,10 +63,13 @@ public class TransformGun : MonoBehaviour, IRestartable
             {
                 if (hit.collider.TryGetComponent(out TransformBlockPlace transformBlockPlace))
                 {
-                    transformBlockPlace.SetBlock(_currentBlock);
-                    _currentBlock.ReleaseObject();
-                    _currentBlock = null;
-                    _isGrabbed = false;
+                    if (transformBlockPlace.GetBlockType == _currentBlock.GetBlockType)
+                    {
+                        transformBlockPlace.SetBlock(_currentBlock);
+                        _currentBlock.ReleaseObject();
+                        _currentBlock = null;
+                        _isGrabbed = false;
+                    }
                 }
             }
         }

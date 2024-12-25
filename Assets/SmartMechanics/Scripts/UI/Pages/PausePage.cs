@@ -34,6 +34,7 @@ public class PausePage : View
     {
         _viewUIManager.RegisterView(this);
         continueButton.onClick.AddListener(ContinueGame);
+        exitButton.onClick.AddListener(ExitToMenu);
     }
     public override void Hide()
     {

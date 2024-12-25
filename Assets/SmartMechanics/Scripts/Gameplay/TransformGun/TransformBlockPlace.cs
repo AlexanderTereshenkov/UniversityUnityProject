@@ -5,6 +5,7 @@ public class TransformBlockPlace : MonoBehaviour, IRestartable
 {
     [SerializeField] private Transform blockPlace;
     [SerializeField] private Light placeLightMarker;
+    [SerializeField] private BlockType blockType;
     private TransformBlock _block;
     private PuzzleAction _action;
     private RespawnManager _respawnManager;
@@ -16,6 +17,14 @@ public class TransformBlockPlace : MonoBehaviour, IRestartable
     }
     public bool IsPlaced { get; private set; }
 
+    public BlockType GetBlockType
+    {
+        get
+        {
+            return blockType;
+        }
+    }
+
     private void Start()
     {
         placeLightMarker.enabled = false;
@@ -25,7 +34,7 @@ public class TransformBlockPlace : MonoBehaviour, IRestartable
 
     public void SetBlock(TransformBlock block)
     {
-        if (IsPlaced)
+        if (IsPlaced || block.GetBlockType != blockType)
             return;
         _block = block;
         _block.transform.parent = blockPlace;
@@ -59,4 +68,10 @@ public class TransformBlockPlace : MonoBehaviour, IRestartable
     {
         OnGrabObject();
     }
+}
+
+public enum BlockType
+{
+    Red,
+    Yellow
 }

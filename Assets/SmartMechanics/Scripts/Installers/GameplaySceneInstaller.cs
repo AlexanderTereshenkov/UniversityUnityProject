@@ -10,6 +10,7 @@ public class GameplaySceneInstaller : MonoBehaviour, IInstaller
     [SerializeField] private Player player;
     [SerializeField] private GameplayHandler gameplayHandler;
     [SerializeField] private RespawnManager respawnManager;
+    [SerializeField] private CheckpointManager checkpointManager;
 
     public void InstallBindings(ContainerBuilder containerBuilder)
     {
@@ -18,7 +19,8 @@ public class GameplaySceneInstaller : MonoBehaviour, IInstaller
             .AddSingleton(worldSettings)
             .AddSingleton(player)
             .AddSingleton(gameplayHandler)
-            .AddSingleton(respawnManager);
+            .AddSingleton(respawnManager)
+            .AddSingleton(checkpointManager);
     }
 
 }

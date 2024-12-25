@@ -17,11 +17,9 @@ public class SceneLoader : MonoBehaviour
         
         if (_isSceneLoaded)
         {
+            Debug.Log("UNLOAD SCENE");
             AsyncOperation unloadAsync = SceneManager.UnloadSceneAsync(_currentSceneIndex);
-            while (!unloadAsync.isDone)
-            {
-                yield return null;
-            }
+            yield return unloadAsync;
         }
         _currentSceneIndex = buildIndex;
         _isSceneLoaded = true;

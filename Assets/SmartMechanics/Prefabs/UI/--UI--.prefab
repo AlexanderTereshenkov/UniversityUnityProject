@@ -2378,8 +2378,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be09298b3bb051a4081e3cceb06cdac5, type: 2}
-  m_sharedMaterial: {fileID: -8205059435753804914, guid: be09298b3bb051a4081e3cceb06cdac5,
+  m_fontAsset: {fileID: 11400000, guid: 925e60c7fc499cb49bcc999abac87ad0, type: 2}
+  m_sharedMaterial: {fileID: -1243990548603801515, guid: 925e60c7fc499cb49bcc999abac87ad0,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2902,6 +2902,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewType: 4
   looseScreenPage: {fileID: 4078335343315293098}
+  mainMenu:
+    sceneAsset: {fileID: 102900000, guid: 3f2935abd744f0d438178800ece5cd9d, type: 3}
+    required: 0
+    buildIndex: 1
   restartCheckpoint: {fileID: 2284118448908017452}
   restartGame: {fileID: 2622514079695637727}
   exitToMenu: {fileID: 105258590758158680}

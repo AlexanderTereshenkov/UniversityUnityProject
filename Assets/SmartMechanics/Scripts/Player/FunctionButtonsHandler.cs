@@ -11,14 +11,17 @@ public class FunctionButtonsHandler : MonoBehaviour
 
     private ViewUIManager _viewUIManager;
     private GameplayHandler _gameplayHandler;
+    private AudioService _audioService;
 
     [Inject]
-    private void Construct(ViewUIManager viewUIManager, InputManager inputManager, GameplayHandler gameplayHandler)
+    private void Construct(ViewUIManager viewUIManager, InputManager inputManager, GameplayHandler gameplayHandler,
+        AudioService audioService)
     {
         _viewUIManager = viewUIManager;
         _inputManager = inputManager;
         _inputActions = _inputManager.ActionAsset;
         _gameplayHandler = gameplayHandler;
+        _audioService = audioService;
     }
 
     private void Start()
@@ -63,11 +66,13 @@ public class FunctionButtonsHandler : MonoBehaviour
                 {
                     ShowAdditionalPage(pausePage);
                     Time.timeScale = 0;
+                    _audioService.PauseGlobalAudio();
                 }
                 else
                 {
                     HideAdditionalPage(pausePage);
                     Time.timeScale = 1;
+                    _audioService.ContinueGlobalAudio();
                 }
             }
             else
@@ -75,6 +80,7 @@ public class FunctionButtonsHandler : MonoBehaviour
                 HideAdditionalPage(inventoryPage);
                 ShowAdditionalPage(pausePage);
                 Time.timeScale = 0;
+                _audioService.PauseGlobalAudio();
             }
         };
     }

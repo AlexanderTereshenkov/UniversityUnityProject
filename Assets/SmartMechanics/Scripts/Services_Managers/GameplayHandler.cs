@@ -11,19 +11,18 @@ public class GameplayHandler : MonoBehaviour
         StartGame();
     }
 
-    public void RestartGame()
+    public void RestartGame(bool checkChekpoint)
     {
         Time.timeScale = 1;
-        if (checkpointManager.CurrentCheckpoint == null)
+        viewUIManager.HideAllViews();
+        viewUIManager.ShowView(ViewType.Gameplay);
+        ShowHideCursor(false);
+        if (checkpointManager.CurrentCheckpoint == null || !checkChekpoint)
         {
-            viewUIManager.HideAllViews();
-            viewUIManager.ShowView(ViewType.Gameplay);
             respawnManager.RestartObjects(true);
-            ShowHideCursor(false);
             return;
         }
         checkpointManager.ReloadCurrentCheckpoint();
-        ShowHideCursor(false);
     }
 
     public void LoseGame()

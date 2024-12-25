@@ -1,15 +1,42 @@
+using Reflex.Attributes;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class Dictophone : MonoBehaviour, IInteractible
 {
     [SerializeField] private AudioClip audioClip;
 
-    private AudioSource _audioSorce;
+    private AudioService _audioService;
+    private PuzzleAction _action;
+    private float _playingTime;
+    private float _playingTimer;
+    private bool _isPlaying;
+
+    [Inject]
+    private void Construct(AudioService audioService)
+    {
+        _audioService = audioService;
+    }
 
     private void Start()
     {
-        _audioSorce = GetComponent<AudioSource>();
+        _action = GetComponent<PuzzleAction>();
+        _playingTime = audioClip.length;
+    }
+
+    private void Update()
+    {
+        if (!_isPlaying)
+            return;
+        _playingTimer += Time.deltaTime;
+        if(_playingTimer >= _playingTime)
+        {
+            if(_action != null)
+            {
+                _action.PerformAction();
+            }
+            _isPlaying = false;
+            _playingTimer = 0;
+        }
     }
     public string GetStringDescription()
     {
@@ -23,11 +50,8 @@ public class Dictophone : MonoBehaviour, IInteractible
 
     private void PlayAudio()
     {
-        if (!_audioSorce.isPlaying)
-        {
-            _audioSorce.clip = audioClip;
-            _audioSorce.Play();
-        }
+        _audioService.PlayGlobalAudio(audioClip);
+        _isPlaying = true;
     }
 
 }

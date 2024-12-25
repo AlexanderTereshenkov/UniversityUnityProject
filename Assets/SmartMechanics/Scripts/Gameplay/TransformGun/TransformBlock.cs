@@ -6,10 +6,19 @@ using UnityEngine;
 public class TransformBlock : MonoBehaviour, IRestartable
 {
     [SerializeField] private TransformBlockManager manager;
+    [SerializeField] private BlockType blockType;
     private bool _isGrabbed;
     private Transform _followTransform;
     private Vector3 _startPosition;
     private RespawnManager _respawnManager;
+
+    public BlockType GetBlockType
+    {
+        get
+        {
+            return blockType;
+        }
+    }
 
     [Inject]
     private void Construct(RespawnManager respawnManager)

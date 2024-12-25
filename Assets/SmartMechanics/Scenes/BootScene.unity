@@ -257,9 +257,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneLoader: {fileID: 782860517}
   mainMenuScene:
-    sceneAsset: {fileID: 102900000, guid: d2c00089648bbfa42b5fad7fb4d9272a, type: 3}
+    sceneAsset: {fileID: 102900000, guid: 3f2935abd744f0d438178800ece5cd9d, type: 3}
     required: 0
-    buildIndex: 3
+    buildIndex: 1
 --- !u!1 &1567631989
 GameObject:
   m_ObjectHideFlags: 0
