@@ -44,7 +44,7 @@ public class LoseScreenPage : View
             {
                 _gameplayHandler.RestartGame(false);
             });
-        exitToMenu.onClick.AddListener(() => { StartCoroutine(_sceneLoader.LoadScene(mainMenu.BuildIndex)); });
+        exitToMenu.onClick.AddListener(() => { _sceneLoader.LoadScene(mainMenu.BuildIndex); });
     }
 
     public override void Hide()

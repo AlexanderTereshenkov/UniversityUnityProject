@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/SmartMechanics/Scenes/MainMenu.unity
     guid: 3f2935abd744f0d438178800ece5cd9d
   - enabled: 1
-    path: Assets/SmartMechanics/Scenes/DemoPlayTest.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
     path: Assets/SmartMechanics/Scenes/GamePlayMap.unity
     guid: d2c00089648bbfa42b5fad7fb4d9272a
   m_configObjects: {}

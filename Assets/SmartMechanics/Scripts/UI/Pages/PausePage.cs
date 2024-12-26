@@ -58,7 +58,7 @@ public class PausePage : View
 
     private void ExitToMenu()
     {
-        StartCoroutine(_sceneLoader.LoadScene(mainMenu.BuildIndex));
+        _sceneLoader.LoadScene(mainMenu.BuildIndex);
     }
 
 }

@@ -10,7 +10,7 @@ public class BootSceneLoader : MonoBehaviour
     [SerializeField] private SceneField mainMenuScene;
     void Start()
     {
-        StartCoroutine(sceneLoader.LoadScene(mainMenuScene.BuildIndex));
+        sceneLoader.LoadScene(mainMenuScene.BuildIndex);
     }
 
 }

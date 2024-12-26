@@ -36,6 +36,8 @@ public class FunctionButtonsHandler : MonoBehaviour
                 var pausePage = _viewUIManager.GetView<PausePage>();
                 var inventoryPage = _viewUIManager.GetView<MapInventoryPage>();
                 var looseScreenPage = _viewUIManager.GetView<LoseScreenPage>();
+                Debug.Log((looseScreenPage == null) + " " + " GOVNO EBUCHEE BLYAT");
+                //GOVNO EBUCHEE BLYAT
                 if (looseScreenPage.LoseScreen.activeInHierarchy || pausePage.PauseMenuPage.activeInHierarchy)
                 {
                     return;

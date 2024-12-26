@@ -15,7 +15,7 @@ public class MainMenuPage : MonoBehaviour
 
     public void LoadGameplay()
     {
-        StartCoroutine(_sceneLoader.LoadScene(gameplayScene.BuildIndex));
+        _sceneLoader.LoadScene(gameplayScene.BuildIndex);
     }
 
     public void Exit()
