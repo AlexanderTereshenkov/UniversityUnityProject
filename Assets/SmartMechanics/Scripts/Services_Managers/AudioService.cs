@@ -42,6 +42,7 @@ public class AudioService : MonoBehaviour
 
     public void PauseGlobalAudio()
     {
+
         GlobalPlayedTime = globalAudioSource.time;
         globalAudioSource.Pause();
     }

@@ -13,6 +13,7 @@ public class PausePage : View
     private GameplayHandler _gameplayHandler;
     private InputManager _inputManager;
     private SceneLoader _sceneLoader;
+    private AudioService _audioService;
 
     public GameObject PauseMenuPage
     {
@@ -23,11 +24,13 @@ public class PausePage : View
     }
 
     [Inject]
-    private void Construct(GameplayHandler gameplayHandler, InputManager inputManager, SceneLoader sceneLoader)
+    private void Construct(GameplayHandler gameplayHandler, InputManager inputManager, SceneLoader sceneLoader,
+        AudioService audioService)
     {
         _gameplayHandler = gameplayHandler;
         _inputManager = inputManager;
         _sceneLoader = sceneLoader;
+        _audioService = audioService;
     }
 
     private void Start()
@@ -54,6 +57,7 @@ public class PausePage : View
         Time.timeScale = 1;
         _gameplayHandler.ShowHideCursor(false);
         _inputManager.EnableActionMap("Player");
+        _audioService.ContinueGlobalAudio();
     }
 
     private void ExitToMenu()

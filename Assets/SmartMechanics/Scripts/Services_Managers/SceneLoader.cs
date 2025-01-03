@@ -19,13 +19,11 @@ public class SceneLoader : MonoBehaviour
         if (_isSceneLoaded)
         {
             AsyncOperation unloadAsync = SceneManager.UnloadSceneAsync(_currentSceneIndex);
-            yield return unloadAsync;
-            /*
+
             while (!unloadAsync.isDone)
             {
                 yield return null;
             }
-            */
         }
         var bootScene = SceneManager.GetSceneByName("BootScene");
         var sessionScene = SceneManager.LoadScene(buildIndex, new LoadSceneParameters(LoadSceneMode.Additive));
